@@ -20,6 +20,7 @@ function LoginWithFacebook() {
       <h1>Welcome!</h1>
       <p>
         Welcome {user.displayName}
+        Welcome {user.displayName}
       </p>
     
       </>

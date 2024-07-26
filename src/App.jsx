@@ -17,25 +17,22 @@ import './fonts/Roboto-MediumItalic.ttf'
 import './fonts/Roboto-Regular.ttf'
 import './fonts/Roboto-Thin.ttf'
 import './fonts/Roboto-ThinItalic.ttf'
+import CustomText from './components/customText'
+import email  from '/email.svg'; 
+import CustomInput from './components/CustomInputs'
+import Login from './pages/Login';
 
 
 
 
-import CategoryCard from './components/Category'
-import FeaturedJobsCard from './components/FeaturedJobsCard'
-import { useTranslation } from 'react-i18next';
 
+ function App() {
 
-function App() {
-  const {t,i18n}=useTranslation()
   return (
-    <div style={{marginLeft:'30px',display:'flex'}}>
-      <p style={{fontFamily:'Roboto-ThinItalic'}}> test</p>
-    <CategoryCard/>
-    <div style={{marginLeft:'15px'}}>
-<FeaturedJobsCard/>
-</div>
-    </div>
+    <>
+    <Login/>
+   
+   </>
   )
 }
 

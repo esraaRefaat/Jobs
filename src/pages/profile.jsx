@@ -3,6 +3,7 @@ import store from "../redux/store";
 import { getUsers, getUser } from "../redux/slices/userDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import MediaCard from "../components/profile/profileCard";
+import Variants from "../components/profile/skeleton";
 
 let id = "66a3ef7da2198e89edc770d9";
 
@@ -15,10 +16,12 @@ export default function profile() {
   useEffect(() => {
     dispatch(getUser(id));
   }, []);
-
+  if (!usersArr) {
+    return <Variants></Variants>;
+  }
   return (
     <div>
-      <MediaCard user={}></MediaCard>
+      <MediaCard user={usersArr[0]}></MediaCard>
     </div>
   );
 }

@@ -1,0 +1,43 @@
+.container {
+    width: 100%;
+  }
+  
+  .row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .textView {
+    width: 100%;
+  }
+  
+  .textInputView {
+    width: 96%;
+    display: flex;
+    height: 33px;
+  }
+  
+  .textInput {
+    width: 90%;
+    padding: 0;
+  }
+  
+  .showPassTouch {
+    height: 18px;
+    align-self: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left:165px;
+
+  }
+  
+  span {
+    margin-left: 8px;
+  }
+  

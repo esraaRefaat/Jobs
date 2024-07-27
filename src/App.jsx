@@ -31,8 +31,7 @@ import Profile from "./pages/profile";
   return (
     <>
       <Provider store={store}>
-        <Profile></Profile>
-        <LoginWithFacebook />
+       <NewPassword/>
       </Provider>
     </>
   );

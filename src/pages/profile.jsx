@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import store from "../redux/store";
 import { getUsers, getUser } from "../redux/slices/userDetailsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Info from "../components/profile/info";
 import MediaCard from "../components/profile/profileCard";
 
 let id = "66a3ef7da2198e89edc770d9";
@@ -19,8 +18,7 @@ export default function profile() {
 
   return (
     <div>
-      <Info></Info>
-      <MediaCard></MediaCard>
+      <MediaCard user={}></MediaCard>
     </div>
   );
 }

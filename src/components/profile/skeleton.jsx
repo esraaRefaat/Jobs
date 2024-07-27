@@ -6,7 +6,12 @@ export default function Variants() {
   return (
     <Stack spacing={1}>
       {/* For variant="text", adjust the height via font-size */}
-      <Skeleton variant="text" sx={{ fontSize: "1rem" }} height={100} />
+      <Skeleton
+        variant="text"
+        sx={{ fontSize: "1rem" }}
+        height={100}
+        width={900}
+      />
       {/* For other variants, adjust the size with `width` and `height` */}
       <div style={{ display: "flex", justifyContent: "center", width: "2" }}>
         <Skeleton variant="circular" width={100} height={100} />

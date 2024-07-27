@@ -17,14 +17,11 @@ import './fonts/Roboto-MediumItalic.ttf'
 import './fonts/Roboto-Regular.ttf'
 import './fonts/Roboto-Thin.ttf'
 import './fonts/Roboto-ThinItalic.ttf'
-import CustomText from './components/customText'
-import email  from '/email.svg'; 
-import CustomInput from './components/CustomInputs'
-import NewPassword from './pages/NewPassword';
-import LoginWithFacebook from "./components/LoginWithFacebook/LoginWithFacebook";
+
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import Profile from "./pages/profile";
+import { router } from './routing/routing.jsx';
+import { RouterProvider } from 'react-router-dom';
 
 
  function App() {
@@ -32,6 +29,7 @@ import Profile from "./pages/profile";
     <>
       <Provider store={store}>
        <NewPassword/>
+      <RouterProvider router={router}></RouterProvider>
       </Provider>
     </>
   );

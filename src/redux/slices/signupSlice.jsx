@@ -1,25 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const signupAction=createAsyncThunk("users/getUserInfo",
-    async()=>{
-       const res= await axios.get("http://localhost:1000/users")
-       return res.data
+export const signupAction = createAsyncThunk("users/UserInfo",
+    async (data) => {
+        console.log('datafffffff',data)
+        const res =await axios.post("https://jobboardbackend-u9zm.onrender.com/api/v1/auth/signup",{
+                name: "hady",
+                email: data.email,
+                password: data.password, 
+                rePassword: data.confirmPassword,
+                role:data.userRole
+        })
+        console.log('res', res.data)
+        return res.data
     }
 )
 
-const usersSlice=createSlice(
-{
-    name:"users",
-    initialState:{users:[]  
-     },
-    extraReducers:(builder)=>{
-        builder.addCase(
-            usersAction.fulfilled,(state,action)=>{
-                state.users=action.payload
-            }   
-        )
+const userInfo = createSlice(
+    {
+        name: "Info",
+        initialState: {
+            info: []
+        },
+        extraReducers: (builder) => {
+            builder.addCase(
+                signupAction.fulfilled, (state, action) => {
+                    state.info = action.payload
+                }
+            )
+        }
     }
-}
 )
-export default usersSlice.reducer;
+export default userInfo.reducer;

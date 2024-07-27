@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import CustomText from '../../components/customText';
 import CustomInput from '../../components/CustomInputs';
 import email from '/email.svg';
+import user from '/user.svg';
 import password from '/password.svg'
 import CustomButton from '../../components/CustomButton';
 import facebook from '/facebook.svg'
-import { Formik } from 'formik';
+import { Formik , Field} from 'formik';
 import * as Yup from 'yup';
-import { Button } from '@mui/material';
-
+import { useDispatch, useSelector } from "react-redux";
+import { signupAction } from "../../redux/slices/signUpSlice";;
 
 const SignUp = () => {
-  const [userRole, setUserRole] = useState('')
-
-  const onOptionChange = e => {
-    setUserRole(e.target.value)
-    console.log(e.target.value)
-  }
+  const dispatch = useDispatch()
   const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
   const SignupSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(8)
+      .max(20)
+      .required('Required'),
     email: Yup.string()
       .email('Invalid email')
       .required('Required'),
@@ -28,7 +28,9 @@ const SignUp = () => {
     confirmPassword: Yup.string()
       .min(8)
       .oneOf([Yup.ref('password')], 'your passwords do not match')
-      .required('Required')
+      .required('Required'),
+      role: Yup.string()
+      .required('Required'),
   });
   return (
     <div>
@@ -44,9 +46,11 @@ const SignUp = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '32%', margin: 'auto' }}>
         <Formik
           initialValues={{
+            name: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            role:''
           }}
           validationSchema={SignupSchema}
           onSubmit={values => {
@@ -55,6 +59,25 @@ const SignUp = () => {
         >
           {({ values, errors, touched, handleChange, setFieldTouched, isValid, handleSubmit, handleBlur }) => (
             <>
+              <CustomInput
+                placeholder={'Name'}
+                value={values.name}
+                onChangeText={handleChange('name')}
+                Blur={handleBlur('name')}
+                forceLable={true}
+                TextInputHeight={18}
+                TextInputSize={14}
+                TextInputColor={'#5F5F5F'}
+                leftIcon={<img src={user} />}
+              />
+              {errors.name && touched.name && (
+                <CustomText
+                  text={errors.name}
+                  color="#8F111D"
+                  fontFamily='Roboto-Regular'
+                  size={12}
+                />
+              )}
               <CustomInput
                 placeholder={'Email'}
                 value={values.email}
@@ -114,35 +137,29 @@ const SignUp = () => {
                   size={12}
                 />
               )}
-              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '100%', marginTop: 20 }}>
+               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '100%', marginTop: 20 }}>
                 <CustomText
                   text={"Select Role :"}
                   color='#4640DE'
                   fontFamily='Roboto-Medium'
                   size={15}
                 />
-                <div>
-                  <input
-                    type="radio"
-                    name="role"
-                    value="Hr"
-                    id="Hr"
-                    style={{ accentColor: '#4640DE' }}
-                    onChange={onOptionChange}
-                  />
-                  <label htmlFor="Hr" style={{ color: '#8D8D8D' }}>Hr</label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    name="role"
-                    value="User"
-                    id="User"
-                    style={{ accentColor: '#4640DE' }}
-                    onChange={onOptionChange}
-                  />
-                  <label htmlFor="User" style={{ color: '#8D8D8D' }}>User</label>
-                </div>
+                <label  style={{ color: '#8D8D8D' }}>
+              <Field type="radio" name="role" value="Hr"  style={{ accentColor: '#4640DE' }} />
+              Hr
+            </label>
+            <label  style={{ color: '#8D8D8D' }}>
+              <Field type="radio" name="role" value="User"  style={{ accentColor: '#4640DE' }} />
+              User
+            </label>
+            {errors.role && touched.role && (
+                <CustomText
+                  text={errors.role}
+                  color="#8F111D"
+                  fontFamily='Roboto-Regular'
+                  size={12}
+                />
+              )}
               </div>
               <CustomButton
                 text={'Sign Up'}
@@ -159,7 +176,7 @@ const SignUp = () => {
                   borderRadius: 100,
                   border: 'none'
                 }}
-                disabled={!isValid}
+                //disabled={!isValid}
                 onPress={handleSubmit}
               />
             </>
@@ -206,10 +223,12 @@ const SignUp = () => {
             fontFamily='Roboto-Medium'
             size={15}
           />
-          <Button onClick={() => {
-            console.log('sign uppp')
-          }}
-            style={{ marginLeft: -10 }}
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(getUsers())
+            }}
+            style={{ marginLeft: -10, backgroundColor: 'transparent', border: 'none' }}
           >
             <CustomText
               text={'Login'}
@@ -218,7 +237,7 @@ const SignUp = () => {
               size={15}
               style={{ textDecorationLine: 'underline' }}
             />
-          </Button>
+          </button>
         </div>
       </div>
 

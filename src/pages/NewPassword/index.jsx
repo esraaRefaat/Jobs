@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import CustomText from '../../components/customText';
 import CustomInput from '../../components/CustomInputs';
 import email from '/email.svg';
+import otp from '/otp.svg';
 import password from '/password.svg'
 import CustomButton from '../../components/CustomButton';
 
@@ -42,6 +43,17 @@ const NewPassword = () => {
           >
             {({ values, errors, touched, handleChange, setFieldTouched, isValid, handleSubmit, handleBlur }) => (
               <>
+               <CustomInput
+                    placeholder={'OTP'}
+                    value={''}
+                    onChangeText={()=>{console.log('otp')}}
+                    Blur={()=>{console.log('otp')}}
+                    forceLable={true}
+                    TextInputHeight={18}
+                    TextInputSize={14}
+                    TextInputColor={'#5F5F5F'}
+                    leftIcon={<img src={otp} />}
+                       />
                   <CustomInput
                     password={true}
                     placeholder={'New Password'}

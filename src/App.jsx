@@ -21,19 +21,21 @@ import CustomText from './components/customText'
 import email  from '/email.svg'; 
 import CustomInput from './components/CustomInputs'
 import NewPassword from './pages/NewPassword';
-
-
-
+import LoginWithFacebook from "./components/LoginWithFacebook/LoginWithFacebook";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import Profile from "./pages/profile";
 
 
  function App() {
-
   return (
     <>
-    <NewPassword/>
-   
-   </>
-  )
+      <Provider store={store}>
+        <Profile></Profile>
+        <LoginWithFacebook />
+      </Provider>
+    </>
+  );
 }
 
 export default App;

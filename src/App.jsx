@@ -24,14 +24,14 @@ import NewPassword from "./pages/NewPassword";
 import LoginWithFacebook from "./components/LoginWithFacebook/LoginWithFacebook";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import Profile from "./pages/profile";
+import { router } from "./routing/routing.jsx";
+import { RouterProvider } from "react-router-dom";
 
 function App() {
   return (
     <>
       <Provider store={store}>
-        <Profile></Profile>
-        <LoginWithFacebook />
+        <RouterProvider router={router}></RouterProvider>
       </Provider>
     </>
   );

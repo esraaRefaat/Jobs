@@ -4,6 +4,8 @@ import Main from "../pages/Main/main.jsx";
 import Home from "../pages/Home/home.jsx";
 import Error from "../pages/Error/error.jsx";
 import Profile from "../pages/profile.jsx";
+import Search from "../pages/search/search.jsx";
+
 
 
 export const router = createBrowserRouter([
@@ -19,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "search",
+        element: <Search />,
       },
     ],
   },

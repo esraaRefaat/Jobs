@@ -22,14 +22,16 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { router } from './routing/routing.jsx';
 import { RouterProvider } from 'react-router-dom';
+import SignUp from './pages/SignUp'
+
 
 
  function App() {
   return (
     <>
       <Provider store={store}>
-       <NewPassword/>
-      <RouterProvider router={router}></RouterProvider>
+        <SignUp/>
+      {/* <RouterProvider router={router}></RouterProvider> */}
       </Provider>
     </>
   );

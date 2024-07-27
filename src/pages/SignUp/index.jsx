@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CustomText from '../../components/customText';
 import CustomInput from '../../components/CustomInputs';
 import email from '/email.svg';
@@ -9,16 +9,14 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '@mui/material';
 
-const LoginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Required'),
-  password: Yup.string()
-    .min(8)
-    .required('Required'),
-});
 
 const SignUp = () => {
+  const [userRole, setUserRole] = useState('')
+
+  const onOptionChange = e => {
+    setUserRole(e.target.value)
+    console.log(e.target.value)
+  }
   const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
@@ -26,12 +24,12 @@ const SignUp = () => {
       .required('Required'),
     password: Yup.string()
       .required('Required')
-      .matches(passwordPattern,'Use At Least 9 Characters One Uppercase Letter One Lowercase Letter And One Special character In Your Password.'),
-      confirmPassword: Yup.string()
+      .matches(passwordPattern, 'Use At Least 9 Characters One Uppercase Letter One Lowercase Letter And One Special character In Your Password.'),
+    confirmPassword: Yup.string()
       .min(8)
       .oneOf([Yup.ref('password')], 'your passwords do not match')
       .required('Required')
-    });
+  });
   return (
     <div>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
@@ -48,7 +46,7 @@ const SignUp = () => {
           initialValues={{
             email: '',
             password: '',
-             confirmPassword: ''
+            confirmPassword: ''
           }}
           validationSchema={SignupSchema}
           onSubmit={values => {
@@ -96,31 +94,61 @@ const SignUp = () => {
                   size={12}
                 />
               )}
-               <CustomInput
-                  password={true}
-                  placeholder={'Confirm Password'}
-                  value={values.confirmPassword}
-                  onChangeText={handleChange('confirmPassword')}
-                  Blur={handleBlur('confirmPassword')}
-                  forceLable={true}
-                  TextInputHeight={18}
-                  TextInputSize={14}
-                  TextInputColor={'#5F5F5F'}
-                  leftIcon={<img src={password} />}
+              <CustomInput
+                password={true}
+                placeholder={'Confirm Password'}
+                value={values.confirmPassword}
+                onChangeText={handleChange('confirmPassword')}
+                Blur={handleBlur('confirmPassword')}
+                forceLable={true}
+                TextInputHeight={18}
+                TextInputSize={14}
+                TextInputColor={'#5F5F5F'}
+                leftIcon={<img src={password} />}
               />
-                {errors.confirmPassword && touched.confirmPassword && (
-                  <CustomText
-                    text={errors.confirmPassword}
-                    color="#8F111D"
+              {errors.confirmPassword && touched.confirmPassword && (
+                <CustomText
+                  text={errors.confirmPassword}
+                  color="#8F111D"
                   fontFamily='Roboto-Regular'
-                    size={12}
+                  size={12}
+                />
+              )}
+              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '100%', marginTop: 20 }}>
+                <CustomText
+                  text={"Select Role :"}
+                  color='#4640DE'
+                  fontFamily='Roboto-Medium'
+                  size={15}
+                />
+                <div>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="Hr"
+                    id="Hr"
+                    style={{ accentColor: '#4640DE' }}
+                    onChange={onOptionChange}
                   />
-                )}
+                  <label htmlFor="Hr" style={{ color: '#8D8D8D' }}>Hr</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="role"
+                    value="User"
+                    id="User"
+                    style={{ accentColor: '#4640DE' }}
+                    onChange={onOptionChange}
+                  />
+                  <label htmlFor="User" style={{ color: '#8D8D8D' }}>User</label>
+                </div>
+              </div>
               <CustomButton
                 text={'Sign Up'}
                 containerStyle={{
                   backgroundColor: '#4640DE',
-                  marginTop: 25,
+                  marginTop: 30,
                   alignSelf: 'center',
                   width: 300,
                   height: 45,
@@ -170,7 +198,7 @@ const SignUp = () => {
           display: 'flex',
           flexDirection: 'row',
           marginBottom: 250,
-        alignItems:'center'
+          alignItems: 'center'
         }}>
           <CustomText
             text={"Do not have an Account?  "}
@@ -178,18 +206,18 @@ const SignUp = () => {
             fontFamily='Roboto-Medium'
             size={15}
           />
-          <Button onClick={()=>{
+          <Button onClick={() => {
             console.log('sign uppp')
           }}
-          style={{marginLeft:-10}}
-       >
-          <CustomText
-            text={'Login'}
-            color="#4640DE"
-            fontFamily='Roboto-Medium'
-            size={15}
-            style={{ textDecorationLine: 'underline'}}
-          />
+            style={{ marginLeft: -10 }}
+          >
+            <CustomText
+              text={'Login'}
+              color="#4640DE"
+              fontFamily='Roboto-Medium'
+              size={15}
+              style={{ textDecorationLine: 'underline' }}
+            />
           </Button>
         </div>
       </div>

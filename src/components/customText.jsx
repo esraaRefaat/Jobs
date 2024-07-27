@@ -14,9 +14,9 @@ const CustomText = ({ size, color, fontFamily, text, style, textDecorationLine =
     };
 
     return (
-        <p style={customStyle}>
+        <span style={customStyle}>
             {text}
-        </p>
+        </span>
     );
 }
 

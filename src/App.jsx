@@ -20,7 +20,7 @@ import './fonts/Roboto-ThinItalic.ttf'
 import CustomText from './components/customText'
 import email  from '/email.svg'; 
 import CustomInput from './components/CustomInputs'
-import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 
 
@@ -30,7 +30,7 @@ import Login from './pages/Login';
 
   return (
     <>
-    <Login/>
+    <SignUp/>
    
    </>
   )

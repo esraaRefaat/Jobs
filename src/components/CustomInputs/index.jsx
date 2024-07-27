@@ -4,17 +4,11 @@ import DontshowPass from '/DontshowPass.svg';
 import './CustomInputStyle.css'; 
 
 const CustomInput = ({
-  lable,
   placeholder,
   password,
-  containerStyle,
   onChangeText,
-  forceLable = false,
-  keyboardType = "default",
   autoFocus = false,
   editable = true,
-  TextInputColor,
-  lableStyle,
   leftIcon,
   Blur,
   value
@@ -24,26 +18,23 @@ const CustomInput = ({
   const [text, setText] = useState(value);
   
   return (
-    <div  style={{ borderColor: focus ? '#4640DE' : '#D6DDEB', borderStyle:'solid',borderWidth:1,width:'420px',borderRadius:5,height:'35px',marginTop:'15px'}}>
-      <div className="row">
-        {leftIcon}
-        <div  style={{ marginLeft: 8 }}>
-          {/* <div className="textView">
-            {(text !== "" || focus || forceLable) && <span className={lableStyle}>{lable}</span>}
-          </div> */}
+    <div  style={{ borderColor: focus ? '#4640DE' : '#D6DDEB', borderStyle:'solid',borderWidth:1,width:'420px',borderRadius:5,height:'35px',marginTop:15}}>
+      <div style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
+       <div  style={{ marginLeft: 10,marginTop:4}}> {leftIcon}</div>
+        <div  style={{ marginLeft: 8}}>
           <div>
             <input
               onFocus={() => setFocus(true)}
-             // onBlur={Blur}
+              onBlur={
+                Blur
+            }
               onChange={(e) => {
                 onChangeText(e.target.value);
                 setText(e.target.value);
               }}
               value={value}
-              onBlur={() => setFocus(false)}
               type={showPassword && password ? "password" : "text"}
-             // className="textInput"
-              //style={{ color: 'orange',width:'90%' }}
+              style={{height:'23px',marginTop:'2px',border:'none',outline: 'none'}}
               placeholder={placeholder}
               autoFocus={autoFocus}
               readOnly={!editable}
@@ -52,12 +43,14 @@ const CustomInput = ({
           </div>
         </div>
         {password && (
+          
           <button
             className="showPassTouch"
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ?   <img src={ShowPass} />  : <img src={DontshowPass} /> }
           </button>
+        
         )}
       </div>
     </div>

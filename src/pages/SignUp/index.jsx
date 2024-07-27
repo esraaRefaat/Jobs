@@ -9,22 +9,34 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '@mui/material';
 
+const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+  password: Yup.string()
+    .min(8)
+    .required('Required'),
+});
 
-const Login = () => {
+const SignUp = () => {
   const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
-  const LoginSchema = Yup.object().shape({
+  const SignupSchema = Yup.object().shape({
     email: Yup.string()
       .email('Invalid email')
       .required('Required'),
     password: Yup.string()
       .required('Required')
       .matches(passwordPattern,'Use At Least 9 Characters One Uppercase Letter One Lowercase Letter And One Special character In Your Password.'),
-  });
+      confirmPassword: Yup.string()
+      .min(8)
+      .oneOf([Yup.ref('password')], 'your passwords do not match')
+      .required('Required')
+    });
   return (
     <div>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
         <CustomText
-          text={'Login'}
+          text={'Sign Up'}
           color="#4640DE"
           fontFamily='Roboto-Medium'
           size={40}
@@ -36,8 +48,9 @@ const Login = () => {
           initialValues={{
             email: '',
             password: '',
+             confirmPassword: ''
           }}
-          validationSchema={LoginSchema}
+          validationSchema={SignupSchema}
           onSubmit={values => {
             console.log(values)
           }}
@@ -83,17 +96,28 @@ const Login = () => {
                   size={12}
                 />
               )}
-              <Button onClick={()=>{console.log('helloooo')}}
-                 style={{ alignSelf: 'flex-end' }}>
-              <CustomText
-                text={'Forgot Password?'}
-                color={'#8D8D8D'}
-                fontFamily='Roboto-Medium'
-                size={12}  
+               <CustomInput
+                  password={true}
+                  placeholder={'Confirm Password'}
+                  value={values.confirmPassword}
+                  onChangeText={handleChange('confirmPassword')}
+                  Blur={handleBlur('confirmPassword')}
+                  forceLable={true}
+                  TextInputHeight={18}
+                  TextInputSize={14}
+                  TextInputColor={'#5F5F5F'}
+                  leftIcon={<img src={password} />}
               />
-              </Button>
+                {errors.confirmPassword && touched.confirmPassword && (
+                  <CustomText
+                    text={errors.confirmPassword}
+                    color="#8F111D"
+                  fontFamily='Roboto-Regular'
+                    size={12}
+                  />
+                )}
               <CustomButton
-                text={'Login'}
+                text={'Sign Up'}
                 containerStyle={{
                   backgroundColor: '#4640DE',
                   marginTop: 25,
@@ -160,7 +184,7 @@ const Login = () => {
           style={{marginLeft:-10}}
        >
           <CustomText
-            text={'Sign Up'}
+            text={'Login'}
             color="#4640DE"
             fontFamily='Roboto-Medium'
             size={15}
@@ -174,4 +198,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default SignUp;

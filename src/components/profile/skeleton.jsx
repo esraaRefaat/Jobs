@@ -13,7 +13,7 @@ export default function Variants() {
         width={900}
       />
       {/* For other variants, adjust the size with `width` and `height` */}
-      <div style={{ display: "flex", justifyContent: "center", width: "2" }}>
+      <div style={{ display: "flex", justifyContent: "center", width: 900 }}>
         <Skeleton variant="circular" width={100} height={100} />
       </div>
       <Skeleton variant="rectangular" width={900} height={160} />

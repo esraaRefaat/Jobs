@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MediaCard from "../components/profile/profileCard";
 import Variants from "../components/profile/skeleton";
 
-let id = "66a3ef7da2198e89edc770d9";
+let id = "66a541cd2ab3904d1fcbfee7";
 
 export default function profile() {
   // store.dispatch(getUsers());

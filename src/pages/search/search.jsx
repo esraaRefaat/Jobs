@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchAction } from "../../redux/slices/searchSlice.jsx";
 import SearchCardMUI from "../../components/searchCard/searchCardMUI.jsx";
+import { useLocation } from "react-router-dom";
 
-const Search = ({ searchWord }) => {
+const Search = () => {
   const { jobs, isLoading, error } = useSelector((state) => state.search);
+  
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchWord = searchParams.get("keyword");
+
   const [searchWords, setSearchWords] = useState(searchWord || "");
 
-  let baseSearchUrl = "https://jobboardbackend-u9zm.onrender.com/api/v1/jobs";
-
-  const dispatch = useDispatch();
+  const baseSearchUrl = "https://jobboardbackend-u9zm.onrender.com/api/v1/jobs";
 
   const handleChange = (e) => {
     setSearchWords(e.target.value);

@@ -6,10 +6,10 @@ import user from '/user.svg';
 import password from '/password.svg'
 import CustomButton from '../../components/CustomButton';
 import facebook from '/facebook.svg'
-import { Formik , Field} from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux";
-import { signupAction } from "../../redux/slices/signUpSlice";;
+import { signup } from "../../redux/slices/signUpSlice";;
 
 const SignUp = () => {
   const dispatch = useDispatch()
@@ -25,11 +25,11 @@ const SignUp = () => {
     password: Yup.string()
       .required('Required')
       .matches(passwordPattern, 'Use At Least 9 Characters One Uppercase Letter One Lowercase Letter And One Special character In Your Password.'),
-    confirmPassword: Yup.string()
+    rePassword: Yup.string()
       .min(8)
       .oneOf([Yup.ref('password')], 'your passwords do not match')
       .required('Required'),
-      role: Yup.string()
+    role: Yup.string()
       .required('Required'),
   });
   return (
@@ -49,12 +49,13 @@ const SignUp = () => {
             name: '',
             email: '',
             password: '',
-            confirmPassword: '',
-            role:''
+            rePassword: '',
+            role: ''
           }}
           validationSchema={SignupSchema}
           onSubmit={values => {
             console.log(values)
+            dispatch(signup(values))
           }}
         >
           {({ values, errors, touched, handleChange, setFieldTouched, isValid, handleSubmit, handleBlur }) => (
@@ -120,46 +121,46 @@ const SignUp = () => {
               <CustomInput
                 password={true}
                 placeholder={'Confirm Password'}
-                value={values.confirmPassword}
-                onChangeText={handleChange('confirmPassword')}
-                Blur={handleBlur('confirmPassword')}
+                value={values.rePassword}
+                onChangeText={handleChange('rePassword')}
+                Blur={handleBlur('rePassword')}
                 forceLable={true}
                 TextInputHeight={18}
                 TextInputSize={14}
                 TextInputColor={'#5F5F5F'}
                 leftIcon={<img src={password} />}
               />
-              {errors.confirmPassword && touched.confirmPassword && (
+              {errors.rePassword && touched.rePassword && (
                 <CustomText
-                  text={errors.confirmPassword}
+                  text={errors.rePassword}
                   color="#8F111D"
                   fontFamily='Roboto-Regular'
                   size={12}
                 />
               )}
-               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '100%', marginTop: 20 }}>
+              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '100%', marginTop: 20 }}>
                 <CustomText
                   text={"Select Role :"}
                   color='#4640DE'
                   fontFamily='Roboto-Medium'
                   size={15}
                 />
-                <label  style={{ color: '#8D8D8D' }}>
-              <Field type="radio" name="role" value="Hr"  style={{ accentColor: '#4640DE' }} />
-              Hr
-            </label>
-            <label  style={{ color: '#8D8D8D' }}>
-              <Field type="radio" name="role" value="User"  style={{ accentColor: '#4640DE' }} />
-              User
-            </label>
-            {errors.role && touched.role && (
-                <CustomText
-                  text={errors.role}
-                  color="#8F111D"
-                  fontFamily='Roboto-Regular'
-                  size={12}
-                />
-              )}
+                <label style={{ color: '#8D8D8D' }}>
+                  <Field type="radio" name="role" value="Hr" style={{ accentColor: '#4640DE' }} />
+                  Hr
+                </label>
+                <label style={{ color: '#8D8D8D' }}>
+                  <Field type="radio" name="role" value="User" style={{ accentColor: '#4640DE' }} />
+                  User
+                </label>
+                {errors.role && touched.role && (
+                  <CustomText
+                    text={errors.role}
+                    color="#8F111D"
+                    fontFamily='Roboto-Regular'
+                    size={12}
+                  />
+                )}
               </div>
               <CustomButton
                 text={'Sign Up'}

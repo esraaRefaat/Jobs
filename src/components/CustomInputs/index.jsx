@@ -45,7 +45,7 @@ const CustomInput = ({
         {password && (
           
           <button
-            className={classes.showPassword}
+            className={classes.showPassTouch}
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ?   <img src={ShowPass} />  : <img src={DontshowPass} /> }

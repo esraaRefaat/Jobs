@@ -8,6 +8,7 @@ import facebook from '/facebook.svg'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '@mui/material';
+import logo from '/logo.svg';
 
 
 const Login = () => {
@@ -22,6 +23,8 @@ const Login = () => {
   });
   return (
     <div>
+      
+      <img src={logo}  style={{marginLeft:20,marginTop:20}}/>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
         <CustomText
           text={'Login'}

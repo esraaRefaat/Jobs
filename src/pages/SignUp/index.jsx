@@ -3,15 +3,22 @@ import CustomText from '../../components/customText';
 import CustomInput from '../../components/CustomInputs';
 import email from '/email.svg';
 import user from '/user.svg';
+import logo from '/logo.svg';
 import password from '/password.svg'
 import CustomButton from '../../components/CustomButton';
 import facebook from '/facebook.svg'
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../redux/slices/signUpSlice";;
+import { signUpAction } from "../../redux/slices/signUpSlice";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
+  const signUpUrl = 'https://jobboardbackend-u9zm.onrender.com/api/v1/auth/signup'
+  // const notify = () =>  toast.error("Error Notification !", {
+  //   position: "top-left"
+  // });
   const dispatch = useDispatch()
   const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
   const SignupSchema = Yup.object().shape({
@@ -34,6 +41,7 @@ const SignUp = () => {
   });
   return (
     <div>
+        <img src={logo}  style={{marginLeft:20,marginTop:20}}/>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
         <CustomText
           text={'Sign Up'}
@@ -54,8 +62,18 @@ const SignUp = () => {
           }}
           validationSchema={SignupSchema}
           onSubmit={values => {
-            console.log(values)
-            dispatch(signup(values))
+           // console.log(values)
+            dispatch(signUpAction({ userData: values, url: signUpUrl }))
+              .unwrap()
+              .then((response) => {
+                console.log('res', response)
+               
+
+              })
+              .catch((error) => {
+               // console.error("Sign-up failed:", error);
+                toast.error(error.error);
+              });
           }}
         >
           {({ values, errors, touched, handleChange, setFieldTouched, isValid, handleSubmit, handleBlur }) => (
@@ -146,11 +164,11 @@ const SignUp = () => {
                   size={15}
                 />
                 <label style={{ color: '#8D8D8D' }}>
-                  <Field type="radio" name="role" value="Hr" style={{ accentColor: '#4640DE' }} />
+                  <Field type="radio" name="role" value="hr" style={{ accentColor: '#4640DE' }} />
                   Hr
                 </label>
                 <label style={{ color: '#8D8D8D' }}>
-                  <Field type="radio" name="role" value="User" style={{ accentColor: '#4640DE' }} />
+                  <Field type="radio" name="role" value="user" style={{ accentColor: '#4640DE' }} />
                   User
                 </label>
                 {errors.role && touched.role && (
@@ -219,7 +237,7 @@ const SignUp = () => {
           alignItems: 'center'
         }}>
           <CustomText
-            text={"Do not have an Account?  "}
+            text={"Already have an Account?  "}
             color='#8D8D8D'
             fontFamily='Roboto-Medium'
             size={15}

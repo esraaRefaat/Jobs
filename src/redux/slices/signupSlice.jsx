@@ -1,55 +1,42 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-export const signup = createAsyncThunk(
-  'auth/signup',
-  async ({ name, email, password, rePassword, role }, thunkAPI) => {
+export const signUpAction = createAsyncThunk(
+  "auth",
+  async ({ userData, url }, { rejectWithValue }) => {
     try {
-      const response = await axios.put('https://jobboardbackend-u9zm.onrender.com/api/v1/auth/signup', {
-        name,
-        email,
-        password,
-        rePassword,
-        role
-      },
-      {
-        headers : {
-            'Content-Type' : 'application/json',
-            'Accept' : 'application/json',
-          }
-    }
-    );
+      const response = await axios.post(url, userData);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
-    user: null,
-    status: 'idle',
-    error: null
+    user:{},
+    isLoading: false,
+    error: false,
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(signup.pending, (state) => {
-        state.status = 'loading';
+      .addCase(signUpAction.pending, (state) => {
+        state.isLoading = true;
+        state.error = false;
       })
-      .addCase(signup.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+      .addCase(signUpAction.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.user = action.payload;
-      })
-      .addCase(signup.rejected, (state, action) => {
-        state.status = 'failed';
+            })
+      .addCase(signUpAction.rejected, (state, action) => {
+        state.isLoading = false;
         state.error = action.payload;
       });
-  }
+  },
 });
 
 export default authSlice.reducer;
+
+

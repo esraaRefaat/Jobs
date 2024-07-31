@@ -23,7 +23,8 @@ import store from "./redux/store";
 import { router } from './routing/routing.jsx';
 import { RouterProvider } from 'react-router-dom';
 import SignUp from './pages/SignUp'
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
  function App() {
@@ -32,6 +33,7 @@ import SignUp from './pages/SignUp'
       <Provider store={store}>
         <SignUp/>
       {/* <RouterProvider router={router}></RouterProvider> */}
+      <ToastContainer />
       </Provider>
     </>
   );

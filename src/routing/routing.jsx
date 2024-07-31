@@ -6,26 +6,27 @@ import Error from "../pages/Error/error.jsx";
 import Profile from "../pages/profile.jsx";
 import SignUp from '../pages/SignUp'
 import Login from '../pages/Login'
+import Search from "../pages/search/search.jsx";
+
+
 
 export const router = createBrowserRouter([
   {
-    path: "/",
-    element: <SignUp></SignUp>,
+    element: <Main></Main>,
     errorElement: <Error></Error>,
-    // children: [
-    //   {
-    //     index: true,
-    //     element: <Home />,
-    //   },
-    //   {
-    //     path: "profile",
-    //     element: <Profile />,
-    //   },
-    // ],
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "search",
+        element: <Search />,
+      },
+    ],
   },
-  {
-    path: "/Login",
-    element:<Login></Login>,
-    errorElement: <Error></Error>,
-  }
 ]);

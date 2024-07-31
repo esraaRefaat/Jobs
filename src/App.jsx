@@ -1,9 +1,9 @@
-import './App.css'
+import "./App.css";
 //MUI fonts
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 //custom fonts
 import './fonts/Roboto-Black.ttf'
 import './fonts/Roboto-BlackItalic.ttf'
@@ -27,13 +27,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
- function App() {
+function App() {
   return (
     <>
       <Provider store={store}>
-        <SignUp/>
-      {/* <RouterProvider router={router}></RouterProvider> */}
-      <ToastContainer />
+        <RouterProvider router={router}></RouterProvider>
+        <ToastContainer />
       </Provider>
     </>
   );

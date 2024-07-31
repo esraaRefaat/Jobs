@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ShowPass  from '/ShowPass.svg'; 
 import DontshowPass from '/DontshowPass.svg'; 
-import './CustomInputStyle.css'; 
+import classes from './CustomInputStyle.module.css'; 
 
 const CustomInput = ({
   placeholder,
@@ -45,7 +45,7 @@ const CustomInput = ({
         {password && (
           
           <button
-            className="showPassTouch"
+            className={classes.showPassTouch}
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ?   <img src={ShowPass} />  : <img src={DontshowPass} /> }

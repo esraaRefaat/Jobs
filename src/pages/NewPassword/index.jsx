@@ -43,17 +43,7 @@ const NewPassword = () => {
           >
             {({ values, errors, touched, handleChange, setFieldTouched, isValid, handleSubmit, handleBlur }) => (
               <>
-               <CustomInput
-                    placeholder={'OTP'}
-                    value={''}
-                    onChangeText={()=>{console.log('otp')}}
-                    Blur={()=>{console.log('otp')}}
-                    forceLable={true}
-                    TextInputHeight={18}
-                    TextInputSize={14}
-                    TextInputColor={'#5F5F5F'}
-                    leftIcon={<img src={otp} />}
-                       />
+              
                   <CustomInput
                     password={true}
                     placeholder={'New Password'}
@@ -94,7 +84,17 @@ const NewPassword = () => {
                       size={12}
                     />
                   )}
-                
+                 <CustomInput
+                    placeholder={'OTP'}
+                    value={''}
+                    onChangeText={()=>{console.log('otp')}}
+                    Blur={()=>{console.log('otp')}}
+                    forceLable={true}
+                    TextInputHeight={18}
+                    TextInputSize={14}
+                    TextInputColor={'#5F5F5F'}
+                    leftIcon={<img src={otp} />}
+                       />
                 <CustomButton
                   text={'Submit'}
                   containerStyle={{

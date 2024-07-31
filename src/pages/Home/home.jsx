@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+
+    const [searchWords, setSearchWords] = useState("");
+    const navigate = useNavigate();
+  
+    const handleChange = (e) => {
+      setSearchWords(e.target.value);
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      navigate(`/search?keyword=${searchWords}`);
+      setSearchWords("")
+    };
+
     return (
         <div>
-            <h1>Home</h1>
-        </div>
+        <h1>Home</h1>
+        <form onSubmit={handleSubmit}>
+          <input type="text" value={searchWords} onChange={handleChange} />
+          <button type="submit">
+            Search
+          </button>
+        </form>
+      </div>
     );
 }
 

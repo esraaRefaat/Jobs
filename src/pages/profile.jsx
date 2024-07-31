@@ -18,6 +18,7 @@ export default function profile() {
   useEffect(() => {
     dispatch(getUser(id));
   }, []);
+
   if (!usersArr) {
     return <Variants></Variants>;
   }

@@ -48,12 +48,10 @@ export const getUser = createAsyncThunk("users/getUser", async (id) => {
 
 export const updateUser = createAsyncThunk(
   "favMovieList",
-  async ({ url, userId, movieId }) => {
+  async ({ data, token }) => {
     const response = await axios.put(
       "https://jobboardbackend-u9zm.onrender.com/api/v1/users/",
-      {
-        name: "Haaady yasser",
-      },
+      data,
       {
         headers: {
           token:
@@ -61,7 +59,7 @@ export const updateUser = createAsyncThunk(
         },
       }
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   }
 );
@@ -78,6 +76,7 @@ const fetchUser = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.users = action.payload;
+        // console.log(state.users);
       });
   },
 });

@@ -6,7 +6,6 @@ import CustomText from './customText'; // Assuming this is a custom text compone
 const CustomButton = ({ text, disabled = false, onPress, containerStyle, leftIcon }) => {
     return (
         <button
-            type="button"
             onClick={onPress}
             disabled={disabled}
             //className={`custom-button ${disabled ? 'disabled' : ''}`}

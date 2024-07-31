@@ -1,47 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CustomText from '../../components/customText';
 import CustomInput from '../../components/CustomInputs';
 import email from '/email.svg';
-import user from '/user.svg';
-import logo from '/logo.svg';
 import password from '/password.svg'
 import CustomButton from '../../components/CustomButton';
 import facebook from '/facebook.svg'
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from "react-redux";
-import { signUpAction } from "../../redux/slices/signUpSlice";
-import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Button } from '@mui/material';
+
+const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+  password: Yup.string()
+    .min(8)
+    .required('Required'),
+});
 
 const SignUp = () => {
-  const signUpUrl = 'https://jobboardbackend-u9zm.onrender.com/api/v1/auth/signup'
-  // const notify = () =>  toast.error("Error Notification !", {
-  //   position: "top-left"
-  // });
-  const dispatch = useDispatch()
   const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
   const SignupSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(8)
-      .max(20)
-      .required('Required'),
     email: Yup.string()
       .email('Invalid email')
       .required('Required'),
     password: Yup.string()
       .required('Required')
-      .matches(passwordPattern, 'Use At Least 9 Characters One Uppercase Letter One Lowercase Letter And One Special character In Your Password.'),
-    rePassword: Yup.string()
+      .matches(passwordPattern,'Use At Least 9 Characters One Uppercase Letter One Lowercase Letter And One Special character In Your Password.'),
+      confirmPassword: Yup.string()
       .min(8)
       .oneOf([Yup.ref('password')], 'your passwords do not match')
-      .required('Required'),
-    role: Yup.string()
-      .required('Required'),
-  });
+      .required('Required')
+    });
   return (
     <div>
-        <img src={logo}  style={{marginLeft:20,marginTop:20}}/>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
         <CustomText
           text={'Sign Up'}
@@ -54,49 +46,17 @@ const SignUp = () => {
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '32%', margin: 'auto' }}>
         <Formik
           initialValues={{
-            name: '',
             email: '',
             password: '',
-            rePassword: '',
-            role: ''
+             confirmPassword: ''
           }}
           validationSchema={SignupSchema}
           onSubmit={values => {
-           // console.log(values)
-            dispatch(signUpAction({ userData: values, url: signUpUrl }))
-              .unwrap()
-              .then((response) => {
-                console.log('res', response)
-               
-
-              })
-              .catch((error) => {
-               // console.error("Sign-up failed:", error);
-                toast.error(error.error);
-              });
+            console.log(values)
           }}
         >
           {({ values, errors, touched, handleChange, setFieldTouched, isValid, handleSubmit, handleBlur }) => (
             <>
-              <CustomInput
-                placeholder={'Name'}
-                value={values.name}
-                onChangeText={handleChange('name')}
-                Blur={handleBlur('name')}
-                forceLable={true}
-                TextInputHeight={18}
-                TextInputSize={14}
-                TextInputColor={'#5F5F5F'}
-                leftIcon={<img src={user} />}
-              />
-              {errors.name && touched.name && (
-                <CustomText
-                  text={errors.name}
-                  color="#8F111D"
-                  fontFamily='Roboto-Regular'
-                  size={12}
-                />
-              )}
               <CustomInput
                 placeholder={'Email'}
                 value={values.email}
@@ -136,55 +96,31 @@ const SignUp = () => {
                   size={12}
                 />
               )}
-              <CustomInput
-                password={true}
-                placeholder={'Confirm Password'}
-                value={values.rePassword}
-                onChangeText={handleChange('rePassword')}
-                Blur={handleBlur('rePassword')}
-                forceLable={true}
-                TextInputHeight={18}
-                TextInputSize={14}
-                TextInputColor={'#5F5F5F'}
-                leftIcon={<img src={password} />}
+               <CustomInput
+                  password={true}
+                  placeholder={'Confirm Password'}
+                  value={values.confirmPassword}
+                  onChangeText={handleChange('confirmPassword')}
+                  Blur={handleBlur('confirmPassword')}
+                  forceLable={true}
+                  TextInputHeight={18}
+                  TextInputSize={14}
+                  TextInputColor={'#5F5F5F'}
+                  leftIcon={<img src={password} />}
               />
-              {errors.rePassword && touched.rePassword && (
-                <CustomText
-                  text={errors.rePassword}
-                  color="#8F111D"
-                  fontFamily='Roboto-Regular'
-                  size={12}
-                />
-              )}
-              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '100%', marginTop: 20 }}>
-                <CustomText
-                  text={"Select Role :"}
-                  color='#4640DE'
-                  fontFamily='Roboto-Medium'
-                  size={15}
-                />
-                <label style={{ color: '#8D8D8D' }}>
-                  <Field type="radio" name="role" value="hr" style={{ accentColor: '#4640DE' }} />
-                  Hr
-                </label>
-                <label style={{ color: '#8D8D8D' }}>
-                  <Field type="radio" name="role" value="user" style={{ accentColor: '#4640DE' }} />
-                  User
-                </label>
-                {errors.role && touched.role && (
+                {errors.confirmPassword && touched.confirmPassword && (
                   <CustomText
-                    text={errors.role}
+                    text={errors.confirmPassword}
                     color="#8F111D"
-                    fontFamily='Roboto-Regular'
+                  fontFamily='Roboto-Regular'
                     size={12}
                   />
                 )}
-              </div>
               <CustomButton
                 text={'Sign Up'}
                 containerStyle={{
                   backgroundColor: '#4640DE',
-                  marginTop: 30,
+                  marginTop: 25,
                   alignSelf: 'center',
                   width: 300,
                   height: 45,
@@ -195,7 +131,7 @@ const SignUp = () => {
                   borderRadius: 100,
                   border: 'none'
                 }}
-                //disabled={!isValid}
+                disabled={!isValid}
                 onPress={handleSubmit}
               />
             </>
@@ -234,29 +170,27 @@ const SignUp = () => {
           display: 'flex',
           flexDirection: 'row',
           marginBottom: 250,
-          alignItems: 'center'
+        alignItems:'center'
         }}>
           <CustomText
-            text={"Already have an Account?  "}
+            text={"Do not have an Account?  "}
             color='#8D8D8D'
             fontFamily='Roboto-Medium'
             size={15}
           />
-          <button
-            type="button"
-            onClick={() => {
-              dispatch(getUsers())
-            }}
-            style={{ marginLeft: -10, backgroundColor: 'transparent', border: 'none' }}
-          >
-            <CustomText
-              text={'Login'}
-              color="#4640DE"
-              fontFamily='Roboto-Medium'
-              size={15}
-              style={{ textDecorationLine: 'underline' }}
-            />
-          </button>
+          <Button onClick={()=>{
+            console.log('sign uppp')
+          }}
+          style={{marginLeft:-10}}
+       >
+          <CustomText
+            text={'Login'}
+            color="#4640DE"
+            fontFamily='Roboto-Medium'
+            size={15}
+            style={{ textDecorationLine: 'underline'}}
+          />
+          </Button>
         </div>
       </div>
 

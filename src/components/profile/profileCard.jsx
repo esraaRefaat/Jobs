@@ -27,7 +27,7 @@ export default function MediaCard({ user }) {
           padding: "15px",
         }}
       >
-        {/* <ImageAvatars></ImageAvatars> */}
+        <ImageAvatars></ImageAvatars>
       </Box>
       <Box sx={{ position: "absolute", right: 0, margin: 2 }}>
         <FormDialog user={user}></FormDialog>

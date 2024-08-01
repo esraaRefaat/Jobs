@@ -10,7 +10,7 @@ import facebook from '/facebook.svg'
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux";
-import { signUpAction } from "../../redux/slices/signUpSlice";
+import { signUpAction } from "../../redux/slices/signupSlice.jsx";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

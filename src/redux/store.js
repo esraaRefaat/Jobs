@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userDetailsSlice";
-import authReducer from './slices/signUpSlice'
+import authReducer from './slices/signupSlice.jsx'
 import searchReducer from "./slices/searchSlice.jsx";
 
 

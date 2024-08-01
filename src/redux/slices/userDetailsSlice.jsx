@@ -9,7 +9,7 @@ export const getUsers = createAsyncThunk("users/getUser", async () => {
   // const res = await axios.get(baseURL + id);
   const res = await axios.get(baseURL);
 
-  console.log('res',res.data)
+  console.log("res", res.data);
   return res.data;
 });
 
@@ -49,12 +49,10 @@ export const getUser = createAsyncThunk("users/getUser", async (id) => {
 
 export const updateUser = createAsyncThunk(
   "favMovieList",
-  async ({ url, userId, movieId }) => {
+  async ({ data, token }) => {
     const response = await axios.put(
       "https://jobboardbackend-u9zm.onrender.com/api/v1/users/",
-      {
-        name: "Haaady yasser",
-      },
+      data,
       {
         headers: {
           token:

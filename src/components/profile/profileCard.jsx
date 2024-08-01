@@ -11,7 +11,7 @@ import FormDialog from "./formDialog";
 
 export default function MediaCard({ user }) {
   return (
-    <Card sx={{ maxWidth: 900, position: "relative" }}>
+    <Card sx={{ maxWidth: 900, position: "relative", marginTop: 12 }}>
       <CardMedia
         sx={{ height: 180 }}
         image="/Profile/Canvas Design System Frame 53.png"
@@ -37,7 +37,7 @@ export default function MediaCard({ user }) {
           flexDirection={"column"}
           display={"flex"}
           alignItems={"flexStart"}
-          marginTop={5}
+          marginTop={1}
         >
           <Typography gutterBottom variant="h5" component="div">
             {user.name}

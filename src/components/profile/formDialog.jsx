@@ -7,7 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../../redux/slices/userDetailsSlice";
+import { getUser, updateUser } from "../../redux/slices/userDetailsSlice";
 import RowRadioButtonsGroup from "./inputs/radio";
 
 export default function FormDialog({ user }) {
@@ -35,11 +35,13 @@ export default function FormDialog({ user }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const formJson = Object.fromEntries(formData.entries())[0];
+    const formJson = Object.fromEntries(formData.entries());
     //const email = formJson.email;
     console.log(formJson);
     handleClose();
-    dispatch(updateUser({ name: "omar ahmed omar" }, token));
+    dispatch(updateUser({ data: formJson, token })).then(() => {
+      dispatch(getUser("66a541cd2ab3904d1fcbfee7")); // Update with the correct user ID
+    });
   };
 
   return (

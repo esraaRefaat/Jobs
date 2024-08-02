@@ -2,10 +2,17 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const setPasswordAction = createAsyncThunk(
-  "SetPasswerd",
+  "authPasswerd",
   async ({ userData, url }, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(url, userData);
+      const response = await axios.patch(url,
+        {
+          email: userData.email,
+          newPassword: userData.password,
+          rePassword: userData.confirmPassword,
+          otp: userData.OTP
+        }
+      );
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -14,9 +21,9 @@ export const setPasswordAction = createAsyncThunk(
 );
 
 const setPasswordSlice = createSlice({
-  name: "SetPasswerd",
+  name: "authPasswerd",
   initialState: {
-    message:'',
+    message: '',
     isLoading: false,
     error: false,
   },
@@ -29,7 +36,7 @@ const setPasswordSlice = createSlice({
       .addCase(setPasswordAction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.message = action.payload;
-            })
+      })
       .addCase(setPasswordAction.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;

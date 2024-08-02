@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
 
 const Home = () => {
-
+  const signupToken = useSelector((state) => state.auth.user);
+  const loginToken = useSelector((state) => state.authlogin.loginInfo);
+  console.log('signup',signupToken)
+  console.log('login',loginToken)
     const [searchWords, setSearchWords] = useState("");
     const navigate = useNavigate();
   

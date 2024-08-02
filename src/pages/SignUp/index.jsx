@@ -25,7 +25,7 @@ const SignUp = () => {
   const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
   const SignupSchema = Yup.object().shape({
     name: Yup.string()
-      .min(8)
+      .min(4)
       .max(20)
       .required('Required'),
     email: Yup.string()

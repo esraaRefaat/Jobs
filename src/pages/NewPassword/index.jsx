@@ -57,7 +57,7 @@ const NewPassword = ({ }) => {
           validationSchema={PasswordSchema}
           onSubmit={values => {
             //values.email='esrarefaat@gmail.com'
-            // console.log('valuessss',values)
+            console.log('valuessss',values)
             dispatch(setPasswordAction({ userData: values, url: Url }))
               .unwrap()
               .then((response) => {

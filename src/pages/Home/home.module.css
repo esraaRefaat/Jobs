@@ -1,0 +1,370 @@
+/* Styles for devices with a width between 480px and 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+    .container {
+        max-width: 768px;
+        height: 2000px;
+        
+    }
+    .imgBackground {
+        background-image: url("/home.svg");
+        background-repeat: no-repeat;
+        height: 794px;
+    }
+    .formstyle {
+        padding-top: 560px;
+        margin-left: 5px
+    }
+    .formContainer {
+        width:675px;
+        background-color: #FFF;
+        height: 89px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: 20px
+    }
+
+    .formInput {
+        height: 47px;
+        width: 485px;
+        outline: none;
+        border: none
+    }
+    .formButton {
+        height: 53px;
+        width: 200px;
+        background-color: #4640DE;
+        color: #fff;
+        border: none;
+        font-family: "Roboto-Bold";
+        font-size: 16px
+    }
+    .row {
+        display: flex;
+        flex-direction: row;
+        /* margin-top: 50px; */
+        /* align-self: flex-start;
+     margin-left: 26px;  */
+        margin-left: 10px;
+    }
+
+    .categoryList {
+        display: grid;
+        grid-template-columns: repeat(2, 274px);
+        gap: 25px;
+        /* margin-left: 56px; */
+        margin-top: 48px;
+
+    }
+    .featuredList {
+        display: grid;
+        grid-template-columns: repeat(2, 274px);
+        gap: 25px;
+        /* margin-left: 56px; */
+        margin-top: 48px;
+        padding-bottom: 150px;
+
+    }
+
+    .TextContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 50px
+    }
+    .allJobs {
+        display: flex;
+        flex-direction: row;
+        width: 155px;
+        align-items: center;
+        /* margin-right: 2px */
+    }
+    .center{
+        display:flex;
+        flex-direction:column;
+        padding-inline:45px;
+        align-items:center
+    }
+
+
+}
+
+/* Styles for devices with a width between 768px and 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        max-width: 1024px;
+        height: 2000px;
+    }
+    .imgBackground {
+        background-image: url("/home.svg");
+        background-repeat: no-repeat;
+        height: 794px;
+    }
+    .formstyle {
+        padding-top: 560px;
+        margin-left: 125px
+    }
+
+    .formContainer {
+        width: 800px;
+        background-color: #FFF;
+        height: 89px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: 20px
+    }
+
+    .formInput {
+        height: 47px;
+        width: 485px;
+        outline: none;
+        border: none
+    }
+    .formButton {
+        height: 53px;
+        width: 200px;
+        background-color: #4640DE;
+        color: #fff;
+        border: none;
+        font-family: "Roboto-Bold";
+        font-size: 16px
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        /* margin-top: 50px; */
+        /* align-self: flex-start;
+     margin-left: 26px;  */
+        margin-left: 10px;
+    }
+    .categoryList {
+        display: grid;
+        grid-template-columns: repeat(2, 274px);
+        gap: 25px;
+        /* margin-left: 56px; */
+        margin-top: 48px;
+
+    }
+
+    .featuredList {
+        display: grid;
+        grid-template-columns: repeat(2, 274px);
+        gap: 25px;
+        /* margin-left: 56px; */
+        margin-top: 48px;
+        padding-bottom: 150px;
+
+    }
+    .TextContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 50px
+    }
+
+    .allJobs {
+        display: flex;
+        flex-direction: row;
+        width: 155px;
+        align-items: center;
+        /* margin-right: 2px */
+    }
+    .center{
+        display:flex;
+        flex-direction:column;
+        padding-inline:45px;
+        align-items:center
+    }
+
+}
+
+/* Styles for devices with a width between 1024px and 1199px */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .container {
+        max-width: 1200px;
+        height: 2000px;
+    }
+    .imgBackground {
+        background-image: url("/home.svg");
+        background-repeat: no-repeat;
+        height: 794px;
+    }
+    .formstyle {
+        padding-top: 560px;
+        margin-left: 125px
+    }
+
+    .formContainer {
+        width: 800px;
+        background-color: #FFF;
+        height: 89px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: 20px
+    }
+    .formInput {
+        height: 47px;
+        width: 485px;
+        outline: none;
+        border: none
+    }
+
+    .formButton {
+        height: 53px;
+        width: 200px;
+        background-color: #4640DE;
+        color: #fff;
+        border: none;
+        font-family: "Roboto-Bold";
+        font-size: 16px
+    }
+    .row {
+        display: flex;
+        flex-direction: row;
+        /* margin-top: 50px; */
+        /* align-self: flex-start;
+     margin-left: 26px;  */
+        margin-left: 10px;
+    }
+    .categoryList {
+        display: grid;
+        grid-template-columns: repeat(3, 274px);
+        gap: 25px;
+        /* margin-left: 56px; */
+        margin-top: 48px;
+
+    }
+    .featuredList {
+        display: grid;
+        grid-template-columns: repeat(3, 274px);
+        gap: 25px;
+        /* margin-left: 56px; */
+        margin-top: 48px;
+        padding-bottom: 150px;
+
+    }
+    .TextContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 50px
+    }
+
+    .allJobs {
+        display: flex;
+        flex-direction: row;
+        width: 155px;
+        align-items: center;
+        /* margin-right: 2px */
+    }
+    .center{
+        display:flex;
+        flex-direction:column;
+        padding-inline:45px;
+        align-items:center
+    }
+}
+
+/* Styles for devices with a width of 1200px or more */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1440px;
+        height: 2000px;
+        /* padding-inline: 45px; */
+
+    }
+
+    .imgBackground {
+        background-image: url("/home.svg");
+        background-repeat: no-repeat;
+        height: 794px;
+    }
+
+    .formstyle {
+        padding-top: 560px;
+        margin-left: 125px
+    }
+
+    .formContainer {
+        width: 800px;
+        background-color: #FFF;
+        height: 89px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: 20px
+    }
+
+    .formInput {
+        height: 47px;
+        width: 485px;
+        outline: none;
+        border: none
+    }
+
+    .formButton {
+        height: 53px;
+        width: 200px;
+        background-color: #4640DE;
+        color: #fff;
+        border: none;
+        font-family: "Roboto-Bold";
+        font-size: 16px
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        /* margin-top: 50px; */
+        /* align-self: flex-start;
+     margin-left: 26px;  */
+        margin-left: 10px;
+    }
+
+    .categoryList {
+        display: grid;
+        grid-template-columns: repeat(4, 274px);
+        gap: 25px;
+        /* margin-left: 56px; */
+        margin-top: 48px;
+
+    }
+
+    .featuredList {
+        display: grid;
+        grid-template-columns: repeat(4, 274px);
+        gap: 25px;
+        /* margin-left: 56px; */
+        margin-top: 48px;
+        padding-bottom: 150px;
+
+    }
+
+    .TextContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 50px
+    }
+
+    .allJobs {
+        display: flex;
+        flex-direction: row;
+        width: 155px;
+        align-items: center;
+        /* margin-right: 2px */
+    }
+    .center{
+        display:flex;
+        flex-direction:column;
+        padding-inline:45px;
+        align-items:center
+    }
+}

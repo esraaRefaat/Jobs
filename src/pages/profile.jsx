@@ -43,7 +43,7 @@ export default function profile() {
         flexDirection: "column",
         alignItems: "center",
         paddingY: 2,
-        gap: 2,
+        gap: 4,
       }}
     >
       <Box sx={{ width: "100%", maxWidth: 900 }}>
@@ -52,12 +52,12 @@ export default function profile() {
       <Box sx={{ width: "100%", maxWidth: 900 }}>
         <AppliedJobsCard user={usersArr[0]} />
       </Box>
-      <Box sx={{ width: "100%", maxWidth: 900 }}>
+      {/* <Box sx={{ width: "100%", maxWidth: 900 }}>
         <MediaCard user={usersArr[0]} />
       </Box>
       <Box sx={{ width: "100%", maxWidth: 900 }}>
         <MediaCard user={usersArr[0]} />
-      </Box>
+      </Box> */}
     </Container>
   );
 }

@@ -22,21 +22,6 @@ export default function profile() {
     return <Variants></Variants>;
   }
   return (
-    // <div
-    //   style={{
-    //     display: "flex",
-    //     flexDirection: "column",
-    //     rowGap: "15px",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //   }}
-    // >
-    //   <MediaCard user={usersArr[0]}></MediaCard>
-    //   <AppliedJobsCard user={usersArr[0]}></AppliedJobsCard>
-    //   <MediaCard user={usersArr[0]}></MediaCard>
-    //   <MediaCard user={usersArr[0]}></MediaCard>
-    // </div>
-
     <Container
       sx={{
         display: "flex",

@@ -1,25 +1,66 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
+import { Box, Button } from "@mui/material";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import AvatarFormDialog from "./changeAvatar";
 
 const image = {
-  male: "/Profile/male.jpeg",
-  female: "/Profile/female.jpeg",
+  male: "/Profile/avatar/Avatar Compilation (3).svg",
+  female: "/Profile/avatar/Avatar Compilation (1).svg",
 };
 
 export default function ImageAvatars() {
+  const [show, setShow] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+    console.log("true");
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    console.log("flase");
+  };
+
   return (
-    <Stack direction="row" spacing={2}>
+    <Box
+      position={"relative"}
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
+    >
       <Avatar
         alt="Cindy Baker"
-        src={image.female}
+        src={image.male}
         sx={{
           width: 100,
           height: 100,
           border: "4px solid white",
         }}
       />
-    </Stack>
+      <Button
+        variant="text"
+        sx={{
+          position: "absolute",
+          top: "4px",
+          right: 4,
+          color: "grey",
+          backgroundColor: "rgba(0,0,0,.4)",
+          width: 100,
+          height: 100,
+          borderRadius: 50,
+          display: show ? "flex" : "none",
+        }}
+        onClick={handleClickOpen}
+        // onClick={(event) => event.stopPropagation()}
+      >
+        <CameraAltIcon color="grey"></CameraAltIcon>
+      </Button>
+      <AvatarFormDialog
+        handleClose={handleClose}
+        open={open}
+      ></AvatarFormDialog>
+    </Box>
   );
 }
 

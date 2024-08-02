@@ -9,10 +9,16 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Button } from '@mui/material';
 import logo from '/logo.svg';
-
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAction } from "../../redux/slices/loginSlice";
+import {  toast } from 'react-toastify';
 
 const Login = () => {
+   const loginUrl = 'https://jobboardbackend-u9zm.onrender.com/api/v1/auth/signin'
   const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
       .email('Invalid email')
@@ -22,9 +28,11 @@ const Login = () => {
       .matches(passwordPattern,'Use At Least 9 Characters One Uppercase Letter One Lowercase Letter And One Special character In Your Password.'),
   });
   return (
+    <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
     <div>
       
-      <img src={logo}  style={{marginLeft:20,marginTop:20}}/>
+      <img src={logo}  style={{marginLeft:10,marginTop:10}}/>
+      <div style={{borderStyle:'outset',borderColor:'#4640DE',borderWidth:2,borderRadius:5,marginLeft:90,width:'545px',marginTop:35,height:'650px'}}>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
         <CustomText
           text={'Login'}
@@ -34,7 +42,7 @@ const Login = () => {
           style={{ marginTop: '35px' }}
         />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '32%', margin: 'auto' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '80%', margin: 'auto' }}>
         <Formik
           initialValues={{
             email: '',
@@ -43,6 +51,18 @@ const Login = () => {
           validationSchema={LoginSchema}
           onSubmit={values => {
             console.log(values)
+            dispatch(loginAction({ userData: values, url: loginUrl }))
+            .unwrap()
+            .then((response) => {
+              console.log('res', response)
+              navigate('/');
+             
+
+            })
+            .catch((error) => {
+             // console.error("Sign-up failed:", error);
+              toast.error(error.error);
+            });
           }}
         >
           {({ values, errors, touched, handleChange, setFieldTouched, isValid, handleSubmit, handleBlur }) => (
@@ -86,7 +106,7 @@ const Login = () => {
                   size={12}
                 />
               )}
-              <Button onClick={()=>{console.log('helloooo')}}
+              <Button onClick={()=>{ navigate('/forgetpassword');}}
                  style={{ alignSelf: 'flex-end' }}>
               <CustomText
                 text={'Forgot Password?'}
@@ -158,7 +178,7 @@ const Login = () => {
             size={15}
           />
           <Button onClick={()=>{
-            console.log('sign uppp')
+            navigate('/signup');
           }}
           style={{marginLeft:-10}}
        >
@@ -172,8 +192,10 @@ const Login = () => {
           </Button>
         </div>
       </div>
-
+</div>
     </div>
+      <div> <img src={'/22.jpg'}  style={{width:'650px',height:'100%'}}/></div>
+      </div>
   );
 }
 

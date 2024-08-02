@@ -10,15 +10,17 @@ import facebook from '/facebook.svg'
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux";
-import { signUpAction } from "../../redux/slices/signUpSlice";
+import { signUpAction } from "../../redux/slices/signupSlice";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const signUpUrl = 'https://jobboardbackend-u9zm.onrender.com/api/v1/auth/signup'
   // const notify = () =>  toast.error("Error Notification !", {
   //   position: "top-left"
   // });
+  const navigate = useNavigate();
   const dispatch = useDispatch()
   const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
   const SignupSchema = Yup.object().shape({
@@ -40,9 +42,11 @@ const SignUp = () => {
       .required('Required'),
   });
   return (
-    <div>
-        <img src={logo}  style={{marginLeft:20,marginTop:20}}/>
-      <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+    <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
+       <div>
+        <img src={logo}  style={{marginLeft:10,marginTop:10}}/>
+        <div style={{borderStyle:'outset',borderColor:'#4640DE',borderWidth:2,borderRadius:5,marginLeft:90,width:'545px',marginTop:35,height:'650px'}}>
+      <div style={{ display: 'flex', width: '100%', justifyContent: 'center'}}>
         <CustomText
           text={'Sign Up'}
           color="#4640DE"
@@ -51,7 +55,7 @@ const SignUp = () => {
           style={{ marginTop: '35px' }}
         />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '32%', margin: 'auto' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '80%', margin: 'auto' }}>
         <Formik
           initialValues={{
             name: '',
@@ -67,6 +71,7 @@ const SignUp = () => {
               .unwrap()
               .then((response) => {
                 console.log('res', response)
+                navigate('/');
                
 
               })
@@ -245,7 +250,7 @@ const SignUp = () => {
           <button
             type="button"
             onClick={() => {
-              dispatch(getUsers())
+              navigate('/login');
             }}
             style={{ marginLeft: -10, backgroundColor: 'transparent', border: 'none' }}
           >
@@ -259,7 +264,10 @@ const SignUp = () => {
           </button>
         </div>
       </div>
-
+      </div>
+    </div>
+    <div> <img src={'/22.jpg'}  style={{width:'650px',height:'100%'}}/></div>
+   
     </div>
   );
 }

@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../redux/slices/loginSlice";
 import {  toast } from 'react-toastify';
+import { getToken } from "../../redux/slices/tokenSlice";
 
 const Login = () => {
    const loginUrl = 'https://jobboardbackend-u9zm.onrender.com/api/v1/auth/signin'
@@ -55,6 +56,7 @@ const Login = () => {
             .unwrap()
             .then((response) => {
               console.log('res', response)
+              dispatch(getToken(response))
               navigate('/');
              
 

@@ -14,6 +14,7 @@ import { signUpAction } from "../../redux/slices/signupSlice";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import { getToken } from "../../redux/slices/tokenSlice";
 
 const SignUp = () => {
   const signUpUrl = 'https://jobboardbackend-u9zm.onrender.com/api/v1/auth/signup'
@@ -71,6 +72,7 @@ const SignUp = () => {
               .unwrap()
               .then((response) => {
                 console.log('res', response)
+                dispatch(getToken(response))
                 navigate('/');
                
 

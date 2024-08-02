@@ -29,7 +29,6 @@ const authloginSlice = createSlice({
       .addCase(loginAction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.loginInfo = action.payload;
-        state.user = action.payload;
             })
       .addCase(loginAction.rejected, (state, action) => {
         state.isLoading = false;

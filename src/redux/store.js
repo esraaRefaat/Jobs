@@ -7,7 +7,6 @@ import forgetPasswordReducer from "./slices/sendemailSlice.jsx";
 import PasswordReducer from "./slices/setPassword.jsx";
 import tokenReducer from "./slices/tokenSlice.jsx";
 
-
 const store = configureStore({
   reducer: {
     users: userReducer,

@@ -9,7 +9,7 @@ export const getUsers = createAsyncThunk("users/getUser", async () => {
   // const res = await axios.get(baseURL + id);
   const res = await axios.get(baseURL);
 
-  console.log('res',res.data)
+  console.log("res", res.data);
   return res.data;
 });
 
@@ -20,41 +20,12 @@ export const getUser = createAsyncThunk("users/getUser", async (id) => {
   return res.data;
 });
 
-// export const updateUser = createAsyncThunk("users/updateUsers", async () => {
-//   const res = await axios.put(
-//     "https://jobboardbackend-u9zm.onrender.com/api/v1/users/",
-//     {
-//       name: "Haaady yasser",
-//     },
-//     {
-//       header: {
-//         token:
-//           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE1NDFjZDJhYjM5MDRkMWZjYmZlZTciLCJyb2xlIjoiaHIiLCJlbWFpbCI6Im9tYXJAZ21haWwuY29tIiwiaWF0IjoxNzIyMTA2MzE3fQ.HWwenCVT3w95loZyw_ZeMBvh-gmb5yOj9pzbiXt8lMU",
-//       },
-//     }
-//   );
-
-//   // const res = await fetch(updateURL, {
-//   //   method: "PUT",
-//   //   headers: {
-//   //     token: tokenValue,
-//   //   },
-//   //   body: { name: "omar" },
-//   // });
-//   // const resdata = await res.json();
-
-//   return res.data;
-//   // return resdata;
-// });
-
 export const updateUser = createAsyncThunk(
   "favMovieList",
-  async ({ url, userId, movieId }) => {
+  async ({ data, token }) => {
     const response = await axios.put(
       "https://jobboardbackend-u9zm.onrender.com/api/v1/users/",
-      {
-        name: "Haaady yasser",
-      },
+      data,
       {
         headers: {
           token:

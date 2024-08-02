@@ -22,28 +22,13 @@ export default function profile() {
     return <Variants></Variants>;
   }
   return (
-    // <div
-    //   style={{
-    //     display: "flex",
-    //     flexDirection: "column",
-    //     rowGap: "15px",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //   }}
-    // >
-    //   <MediaCard user={usersArr[0]}></MediaCard>
-    //   <AppliedJobsCard user={usersArr[0]}></AppliedJobsCard>
-    //   <MediaCard user={usersArr[0]}></MediaCard>
-    //   <MediaCard user={usersArr[0]}></MediaCard>
-    // </div>
-
     <Container
       sx={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         paddingY: 2,
-        gap: 2,
+        gap: 4,
       }}
     >
       <Box sx={{ width: "100%", maxWidth: 900 }}>
@@ -52,12 +37,12 @@ export default function profile() {
       <Box sx={{ width: "100%", maxWidth: 900 }}>
         <AppliedJobsCard user={usersArr[0]} />
       </Box>
-      <Box sx={{ width: "100%", maxWidth: 900 }}>
+      {/* <Box sx={{ width: "100%", maxWidth: 900 }}>
         <MediaCard user={usersArr[0]} />
       </Box>
       <Box sx={{ width: "100%", maxWidth: 900 }}>
         <MediaCard user={usersArr[0]} />
-      </Box>
+      </Box> */}
     </Container>
   );
 }

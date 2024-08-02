@@ -1,14 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
+import ResponsiveAppBar from "../../components/navBar/navigationBar";
 
 const Main = () => {
-    return (
-        <>
-         {/* <NavBar></NavBar> */}
-         <h1>Nav Bar</h1>
-         <Outlet></Outlet>   
-         
-        </>
-    );
-}
+  return (
+    <>
+      <ResponsiveAppBar></ResponsiveAppBar>
+      <Outlet></Outlet>
+    </>
+  );
+};
 
 export default Main;
+

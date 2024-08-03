@@ -8,6 +8,9 @@ import PasswordReducer from "./slices/setPassword.jsx";
 import tokenReducer from "./slices/tokenSlice.jsx";
 import jobInfoReducer from "./slices/jobInfoSlice.jsx";
 import applyJobReducer from "./slices/applyJobSlice.jsx";
+import updateJobReducer from "./slices/updateJobSlice.jsx";
+import deleteJobReducer from "./slices/deleteJobSlice.jsx";
+
 
 
 
@@ -23,6 +26,9 @@ const store = configureStore({
     Token: tokenReducer,
     jobInfo: jobInfoReducer,
     applyJob: applyJobReducer,
+    updateJob: updateJobReducer,
+    deleteJob: deleteJobReducer,
+
 
 
     

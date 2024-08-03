@@ -1,12 +1,10 @@
-// src/components/FilterCard.jsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const FilterCard = ({ onFilter }) => {
   const [category, setCategory] = useState("");
   const [employmentType, setEmploymentType] = useState("");
 
   useEffect(() => {
-    // Call the onFilter function whenever category or employmentType changes
     onFilter({ category, employmentType });
   }, [category, employmentType, onFilter]);
 

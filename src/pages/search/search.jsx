@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchAction } from "../../redux/slices/searchSlice.jsx";
 import SearchCardMUI from "../../components/searchCard/searchCardMUI.jsx";
@@ -29,6 +29,10 @@ const Search = () => {
     if (searchWord) {
       dispatch(SearchAction(`${baseSearchUrl}?keyword=${searchWord}`));
     }
+    else{
+      dispatch(SearchAction(`${baseSearchUrl}`));
+
+    }
   }, [dispatch, searchWord]);
 
   const handleSubmit = (e) => {
@@ -42,9 +46,12 @@ const Search = () => {
     }
     dispatch(SearchAction(filterUrl));  };
 
-    const handleFilterChange = (newFilters) => {
-      setFilters(newFilters);
-    };
+    const handleFilterChange = useCallback(
+      (newFilters) => {
+        setFilters(newFilters);
+      },
+      []
+    );
 
   return (
     <div style={{ display: "flex" }}>

@@ -7,9 +7,8 @@ import Variants from "../components/profile/skeleton";
 import AppliedJobsCard from "../components/profile/appliedJobsCard";
 import { Box, Container, Grid } from "@mui/material";
 
-let id = "66a541cd2ab3904d1fcbfee7";
-
 export default function profile() {
+  let id = useSelector((state) => state.Token.token.user_id);
   // store.dispatch(getUsers());
   const dispatch = useDispatch();
   const usersArr = useSelector((state) => state.users.users.document);

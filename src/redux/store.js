@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userDetailsSlice";
-import authReducer from './slices/signupSlice.jsx'
+import authReducer from "./slices/signupSlice.jsx";
 import searchReducer from "./slices/searchSlice.jsx";
 import loginReducer from "./slices/loginSlice.jsx";
 import forgetPasswordReducer from "./slices/sendemailSlice.jsx";
@@ -11,10 +11,7 @@ import jobInfoReducer from "./slices/jobInfoSlice.jsx";
 import applyJobReducer from "./slices/applyJobSlice.jsx";
 import updateJobReducer from "./slices/updateJobSlice.jsx";
 import deleteJobReducer from "./slices/deleteJobSlice.jsx";
-
-
-
-
+import avatarReducer from "./slices/avatarSlice";
 
 const store = configureStore({
   reducer: {
@@ -30,11 +27,7 @@ const store = configureStore({
     applyJob: applyJobReducer,
     updateJob: updateJobReducer,
     deleteJob: deleteJobReducer,
-
-
-
-    
-
+    avatar: avatarReducer,
   },
 });
 

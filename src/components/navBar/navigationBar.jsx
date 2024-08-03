@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import AddJobFrom from "../../components/addJob/addJobCard";
 
 // const pages = ["Products", "Pricing", "Blog"];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -22,7 +23,8 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
   const message = useSelector((state) => state.Token.token.message);
-  console.log("usertoken", message);
+  const role = useSelector((state) => state.Token.token.user_role);
+  console.log(role, message);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -147,6 +149,35 @@ function ResponsiveAppBar() {
                 >
                   Signup
                 </Button>
+              </Box>
+            )}
+
+            {role == "hr" && (
+              <Box
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  justifyContent: "flex-end",
+                  marginLeft: 3,
+                  gap: 3,
+                }}
+              >
+                <AddJobFrom></AddJobFrom>
+
+                {/* <Button
+                  variant="outlined"
+                  primary
+                  key={Math.random()}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/login");
+                  }}
+                  sx={{
+                    my: 2,
+                    display: "block",
+                  }}
+                >
+                  Add Job
+                </Button> */}
               </Box>
             )}
 

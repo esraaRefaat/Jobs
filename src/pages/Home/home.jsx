@@ -88,13 +88,13 @@ const Home = () => {
               text={'Explore by'}
               color="#25324B"
               fontFamily='Roboto-Medium'
-              size={48}
+              size={40}
             />
             <CustomText
               text={' category'}
               color="#26A4FF"
               fontFamily='Roboto-Medium'
-              size={48}
+              size={40}
             />
           </div>
           <button
@@ -128,13 +128,13 @@ const Home = () => {
               text={'Featured'}
               color="#25324B"
               fontFamily='Roboto-Medium'
-              size={48}
+              size={40}
             />
             <CustomText
               text={' jobs'}
               color="#26A4FF"
               fontFamily='Roboto-Medium'
-              size={48}
+              size={40}
             />
           </div>
           <button

@@ -368,6 +368,7 @@
         /* align-self: flex-start;
      margin-left: 26px;  */
         margin-left: 10px;
+        
     }
 
     .categoryList {
@@ -393,7 +394,8 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        margin-top: 50px
+        margin-top: 50px;
+
     }
 
     .allJobs {

@@ -47,7 +47,7 @@ const SignUp = () => {
   });
   return (
     <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
-       <div>
+       <div  style={{width:'50%',height:'100%'}}>
         <img src={logo}  style={{marginLeft:10,marginTop:10}}/>
         <div style={{borderStyle:'outset',borderColor:'#4640DE',borderWidth:2,borderRadius:5,marginLeft:90,width:'545px',marginTop:35,height:'650px'}}>
       <div style={{ display: 'flex', width: '100%', justifyContent: 'center'}}>
@@ -283,7 +283,7 @@ const SignUp = () => {
           }}
         >
           <CustomText
-            text={"Already have an Account?  "}
+            text={"Already have an Account?"}
             color="#8D8D8D"
             fontFamily="Roboto-Medium"
             size={15}
@@ -292,6 +292,11 @@ const SignUp = () => {
             type="button"
             onClick={() => {
               navigate('/login');
+            }}
+            style={{
+              border:'none',
+              background:'none',
+              marginLeft:-10
             }}
           >
             <CustomText
@@ -306,7 +311,7 @@ const SignUp = () => {
       </div>
       </div>
     </div>
-    <div> <img src={'/22.jpg'}  style={{width:'650px',height:'100%'}}/></div>
+    <div style={{width:'50%',height:'100%'}}> <img src={'/22.jpg'}  style={{width:'100%',height:'100%'}}/></div>
    
     </div>
   );

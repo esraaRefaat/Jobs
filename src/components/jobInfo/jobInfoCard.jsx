@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent, Typography, Grid, Button, Stack } from '@mui/material';
 
 const JobInfoCard = ({ jobInfo, onApply, onEdit, onDelete, isCreator, isAdmin }) => {
+
   return (
     <Card sx={{ minWidth: 275, margin: '20px auto', padding: '10px' }}>
       <CardContent sx={{ padding: '10px' }}>

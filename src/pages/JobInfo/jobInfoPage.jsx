@@ -13,16 +13,15 @@ const JobInfoPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const baseSearchUrl = "https://jobboardbackend-u9zm.onrender.com/api/v1/jobs";
+  let deleteJobUrl = "https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/";
+
 
   const { jobInfo, isLoading, error } = useSelector((state) => state.jobInfo);
-  const { deleteJob  } = useSelector((state) => state.deleteJob);
-  const { applyJob } = useSelector((state) => state.applyJob);
 
   const token = useSelector((state) => state.Token.token);
   const isCreator = jobInfo?.createdBy?._id == token?.user_id;
-  const isAdmin = token?.user_id == "admin";
+  const isAdmin = token?.user_role === "admin";
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-
 
   useEffect(() => {
     if (id) {
@@ -34,35 +33,32 @@ const JobInfoPage = () => {
     }
   }, [dispatch, id]);
 
-  useEffect(() => {
-    if (jobInfo) {
-      console.log("Fetched job info:", jobInfo);
-      console.log("Fetched user info:", token);
-    }
-  }, [jobInfo, token]);
+
 
   const handleApply = async(jobId) => {
 
     try {
-      const result = await dispatch(applyJobAction({ url: `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/apply/${id}`, token: token.token })).unwrap();
+      const result = await dispatch(applyJobAction({ url: `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/apply/${jobId}`, token: token.token })).unwrap();
       
       alert(result.message || 'Applied successfully!');
     } catch (error) {
       alert(error.message || 'You need to sign in to apply.');
     }
-    console.log(applyJob);
-    console.log(`Applying for job ${jobId}`);
   };
 
-  const handleEdit = (jobId) => {
+  const handleEdit = () => {
     setIsUpdateModalOpen(true);
 
-    console.log(`Editing job ${jobId}`);
   };
 
   const handleDelete = async (jobId) => {
+
+    if(isAdmin){
+      deleteJobUrl="https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/delete/"
+    }
+
     try {
-      const result = await dispatch(deleteJobAction({ url: `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/${id}`, token: token.token })).unwrap();
+      const result = await dispatch(deleteJobAction({ url: `${deleteJobUrl}${jobId}`, token: token.token })).unwrap();
       
       alert(result.message || 'Job deleted successfully!');
   

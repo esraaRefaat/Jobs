@@ -3,6 +3,7 @@
     .container {
         max-width: 768px;
         height: 2000px;
+        min-width: 480px;
         
     }
     .imgBackground {
@@ -15,7 +16,7 @@
         margin-left: 5px
     }
     .formContainer {
-        width:675px;
+        width:90%;
         background-color: #FFF;
         height: 89px;
         display: flex;

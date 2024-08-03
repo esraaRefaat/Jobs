@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import MediaCard from "../components/profile/profileCard";
 import Variants from "../components/profile/skeleton";
 import AppliedJobsCard from "../components/profile/appliedJobsCard";
+import AddedJobsCard from "../components/profile/addedJobsCard";
+
 import { Box, Container, Grid } from "@mui/material";
 
 export default function profile() {
@@ -36,12 +38,9 @@ export default function profile() {
       <Box sx={{ width: "100%", maxWidth: 900 }}>
         <AppliedJobsCard user={usersArr[0]} />
       </Box>
-      {/* <Box sx={{ width: "100%", maxWidth: 900 }}>
-        <MediaCard user={usersArr[0]} />
-      </Box>
       <Box sx={{ width: "100%", maxWidth: 900 }}>
-        <MediaCard user={usersArr[0]} />
-      </Box> */}
+        <AddedJobsCard user={usersArr[0]} />
+      </Box>
     </Container>
   );
 }

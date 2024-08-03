@@ -7,17 +7,14 @@ import FilterCard from "../../components/searchCard/filterCard.jsx";
 
 const Search = () => {
   const { jobs, isLoading, error } = useSelector((state) => state.search);
-  
+
   const dispatch = useDispatch();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchWord = searchParams.get("keyword");
 
-  
-
   const [searchWords, setSearchWords] = useState(searchWord || "");
   const [filters, setFilters] = useState({ category: "", employmentType: "" });
-
 
   const baseSearchUrl = "https://jobboardbackend-u9zm.onrender.com/api/v1/jobs";
 
@@ -28,10 +25,8 @@ const Search = () => {
   useEffect(() => {
     if (searchWord) {
       dispatch(SearchAction(`${baseSearchUrl}?keyword=${searchWord}`));
-    }
-    else{
+    } else {
       dispatch(SearchAction(`${baseSearchUrl}`));
-
     }
   }, [dispatch, searchWord]);
 
@@ -44,14 +39,12 @@ const Search = () => {
     if (filters.employmentType) {
       filterUrl += `&employmentType=${filters.employmentType}`;
     }
-    dispatch(SearchAction(filterUrl));  };
+    dispatch(SearchAction(filterUrl));
+  };
 
-    const handleFilterChange = useCallback(
-      (newFilters) => {
-        setFilters(newFilters);
-      },
-      []
-    );
+  const handleFilterChange = useCallback((newFilters) => {
+    setFilters(newFilters);
+  }, []);
 
   return (
     <div style={{ display: "flex" }}>
@@ -70,7 +63,7 @@ const Search = () => {
         {jobs.map((job) => (
           <Link key={job._id} to={`/jobinfo/${job._id}`}>
             <SearchCardMUI job={job} />
-          </Link>          
+          </Link>
         ))}
       </div>
     </div>
@@ -78,3 +71,4 @@ const Search = () => {
 };
 
 export default Search;
+

@@ -17,6 +17,7 @@ export default function FormDialog({ user }) {
   const [education, setEducation] = React.useState(user.education);
   const [number, setNumber] = React.useState(user.mobileNumber);
   const [gender, setGender] = React.useState(user.gender);
+  const [experience, setExperience] = React.useState(user.gender);
 
   // const token =
   //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE1NDFjZDJhYjM5MDRkMWZjYmZlZTciLCJyb2xlIjoiaHIiLCJlbWFpbCI6Im9tYXJAZ21haWwuY29tIiwiaWF0IjoxNzIyMTA2MzE3fQ.HWwenCVT3w95loZyw_ZeMBvh-gmb5yOj9pzbiXt8lMU";
@@ -79,6 +80,20 @@ export default function FormDialog({ user }) {
             We will send updates occasionally.
           </DialogContentText>
           <TextField
+            disabled
+            required
+            margin="normal"
+            id="email"
+            name="email"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <TextField
             autoFocus
             required
             margin="normal"
@@ -92,18 +107,6 @@ export default function FormDialog({ user }) {
             onChange={(e) => setName(e.target.value)}
           />
 
-          <TextField
-            required
-            margin="normal"
-            id="email"
-            name="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
           <TextField
             required
             margin="normal"
@@ -141,6 +144,21 @@ export default function FormDialog({ user }) {
             variant="standard"
             value={education}
             onChange={(e) => setEducation(e.target.value)}
+          />
+
+          <TextField
+            minRows={3}
+            multiline
+            required
+            margin="normal"
+            id="experience"
+            name="experience"
+            label="Experience"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={experience}
+            onChange={(e) => setExperience(e.target.value)}
           />
         </DialogContent>
         <DialogActions>

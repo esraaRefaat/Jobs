@@ -1,22 +1,32 @@
+.buttonStyle {
+    border: none;
+    background: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 /* Styles for devices with a width between 480px and 767px */
 @media (min-width: 480px) and (max-width: 767px) {
     .container {
         max-width: 768px;
         height: 2000px;
         min-width: 480px;
-        
+
     }
+
     .imgBackground {
         background-image: url("/home.svg");
         background-repeat: no-repeat;
         height: 794px;
     }
+
     .formstyle {
         padding-top: 560px;
         margin-left: 5px
     }
+
     .formContainer {
-        width:90%;
+        width: 90%;
         background-color: #FFF;
         height: 89px;
         display: flex;
@@ -32,6 +42,7 @@
         outline: none;
         border: none
     }
+
     .formButton {
         height: 53px;
         width: 200px;
@@ -41,6 +52,7 @@
         font-family: "Roboto-Bold";
         font-size: 16px
     }
+
     .row {
         display: flex;
         flex-direction: row;
@@ -58,6 +70,7 @@
         margin-top: 48px;
 
     }
+
     .featuredList {
         display: grid;
         grid-template-columns: repeat(2, 274px);
@@ -74,6 +87,7 @@
         justify-content: space-between;
         margin-top: 50px
     }
+
     .allJobs {
         display: flex;
         flex-direction: row;
@@ -81,11 +95,12 @@
         align-items: center;
         /* margin-right: 2px */
     }
-    .center{
-        display:flex;
-        flex-direction:column;
-        padding-inline:45px;
-        align-items:center
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        padding-inline: 45px;
+        align-items: center
     }
 
 
@@ -97,11 +112,13 @@
         max-width: 1024px;
         height: 2000px;
     }
+
     .imgBackground {
         background-image: url("/home.svg");
         background-repeat: no-repeat;
         height: 794px;
     }
+
     .formstyle {
         padding-top: 560px;
         margin-left: 125px
@@ -124,6 +141,7 @@
         outline: none;
         border: none
     }
+
     .formButton {
         height: 53px;
         width: 200px;
@@ -142,6 +160,7 @@
      margin-left: 26px;  */
         margin-left: 10px;
     }
+
     .categoryList {
         display: grid;
         grid-template-columns: repeat(2, 274px);
@@ -160,6 +179,7 @@
         padding-bottom: 150px;
 
     }
+
     .TextContainer {
         display: flex;
         flex-direction: row;
@@ -174,11 +194,12 @@
         align-items: center;
         /* margin-right: 2px */
     }
-    .center{
-        display:flex;
-        flex-direction:column;
-        padding-inline:45px;
-        align-items:center
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        padding-inline: 45px;
+        align-items: center
     }
 
 }
@@ -189,11 +210,13 @@
         max-width: 1200px;
         height: 2000px;
     }
+
     .imgBackground {
         background-image: url("/home.svg");
         background-repeat: no-repeat;
         height: 794px;
     }
+
     .formstyle {
         padding-top: 560px;
         margin-left: 125px
@@ -209,6 +232,7 @@
         justify-content: space-between;
         padding-inline: 20px
     }
+
     .formInput {
         height: 47px;
         width: 485px;
@@ -225,6 +249,7 @@
         font-family: "Roboto-Bold";
         font-size: 16px
     }
+
     .row {
         display: flex;
         flex-direction: row;
@@ -233,6 +258,7 @@
      margin-left: 26px;  */
         margin-left: 10px;
     }
+
     .categoryList {
         display: grid;
         grid-template-columns: repeat(3, 274px);
@@ -241,6 +267,7 @@
         margin-top: 48px;
 
     }
+
     .featuredList {
         display: grid;
         grid-template-columns: repeat(3, 274px);
@@ -250,6 +277,7 @@
         padding-bottom: 150px;
 
     }
+
     .TextContainer {
         display: flex;
         flex-direction: row;
@@ -264,11 +292,12 @@
         align-items: center;
         /* margin-right: 2px */
     }
-    .center{
-        display:flex;
-        flex-direction:column;
-        padding-inline:45px;
-        align-items:center
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        padding-inline: 45px;
+        align-items: center
     }
 }
 
@@ -362,10 +391,11 @@
         align-items: center;
         /* margin-right: 2px */
     }
-    .center{
-        display:flex;
-        flex-direction:column;
-        padding-inline:45px;
-        align-items:center
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        padding-inline: 45px;
+        align-items: center
     }
 }

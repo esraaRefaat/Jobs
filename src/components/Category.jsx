@@ -7,19 +7,25 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import SvgIcon from '@mui/material/SvgIcon';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 
 
-export default function CategoryCard({ category }) {
+export default function CategoryCard({ category,number }) {
+    const navigate = useNavigate();
+  //  console.log(category.replace(/\s/g, '').toLowerCase())
     return (
+        <CardActions onClick={()=>
+            navigate(`/search?keyword=${category.toLowerCase()}`)
+        }>
         <Card sx={{ width: '274px', height: '190px' }}>
-            <img src={`/categories/${category}.svg`} style={{ paddingLeft: '32px', paddingTop: '32px' }} />
+            <img src={`/categories/${category.replace(/\s/g, '').toLowerCase()}.svg`} style={{ paddingLeft: '32px', paddingTop: '32px' }} />
             <CardContent sx={{ paddingTop: '32px', paddingLeft: '32px' }}>
                 <Typography gutterBottom variant="h4" component="div" sx={{ fontSize: '24px', fontWeight: 'bold' }}>
                     {category}
                 </Typography>
                 <Box display="flex" alignItems="center" gap={2}>
                     <Typography gutterBottom variant="subtitle1" sx={{ color: '#7C8493' }}>
-                        235 jobs available
+                        {number} jobs available
                     </Typography>
                     <SvgIcon sx={{ marginBottom: '6px' }}>
                         <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,5 +37,6 @@ export default function CategoryCard({ category }) {
                 </Box>
             </CardContent>
         </Card>
+        </CardActions>
     );
 }

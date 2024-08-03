@@ -16,6 +16,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import { Box, Chip } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,9 +30,9 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function FeaturedJobsCard({ category, type, catTitle, catLocation, catCompany, catDetails }) {
+export default function FeaturedJobsCard({ category, type, catTitle, catLocation, catCompany, catDetails,Id }) {
   const [expanded, setExpanded] = React.useState(false);
-
+  const navigate = useNavigate();
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -59,12 +61,15 @@ export default function FeaturedJobsCard({ category, type, catTitle, catLocation
   let index = categoriespallete.indexOf(category2)
   let colorBG = categoryColors[index];
   let colorText = categoryColorsText[index];
+  // `/jobinfo/${job._id}`
+ 
 
   return (
+    <CardActions onClick={()=>{
+      navigate(`/jobinfo/${Id}`)
+    }}>
     <Card sx={{ width: '274px', height: '283px' }}>
-
       <CardContent sx={{ display: 'flex', justifyContent: 'space-between' }}>
-
         <img src={`/categories/${category}.svg`} />
         <Button variant="outlined">{type}</Button>
       </CardContent>
@@ -99,5 +104,6 @@ export default function FeaturedJobsCard({ category, type, catTitle, catLocation
         </Box>
       </CardContent>
     </Card>
+    </CardActions>
   );
 }

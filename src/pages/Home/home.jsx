@@ -32,7 +32,43 @@ const Home = () => {
   useEffect(() => {
     dispatch(usersAction())
   }, [])
- 
+  let categoriesArr = [
+    {
+      cat: 'Design',
+      num: 20
+    },
+    {
+      cat: 'Sales',
+      num: 15
+    },
+    {
+      cat: 'Marketing',
+      num: 25
+    },
+    {
+      cat: 'Finance',
+      num: 5
+    },
+    {
+      cat: 'Technology',
+      num: 35
+    },
+    {
+      cat: 'Engineering',
+      num: 10
+    },
+    {
+      cat: 'Business',
+      num: 30
+    },
+    {
+      cat: 'Human Resource',
+      num: 4
+    },
+
+  ]
+
+
   return (
     <>
       <div className={classes.container} >
@@ -62,21 +98,28 @@ const Home = () => {
               size={48}
             />
           </div>
-          <div className={classes.allJobs}>
-            <CustomText
-              text={'Show all jobs'}
-              color="#4640DE"
-              fontFamily='Roboto-Medium'
-              size={16}
-            />
-            <img src={Arrow} />
-          </div>
+          <button
+            className={classes.buttonStyle}
+            onClick={() => {
+              navigate(`/search`);
+            }}>
+            <div className={classes.allJobs}>
+              <CustomText
+                text={'Show all jobs'}
+                color="#4640DE"
+                fontFamily='Roboto-Medium'
+                size={16}
+              />
+              <img src={Arrow} />
+            </div>
+          </button>
         </div>
         <div className={classes.center}>
           <div className={classes.categoryList}>
-            {categories?.map((item) => (
+            {categoriesArr?.map((item) => (
               <Category
-                category={item.category} />
+                category={item.cat}
+                number={item.num} />
             ))}
           </div>
         </div>
@@ -95,26 +138,33 @@ const Home = () => {
               size={48}
             />
           </div>
-          <div className={classes.allJobs}>
-            <CustomText
-              text={'Show all jobs'}
-              color="#4640DE"
-              fontFamily='Roboto-Medium'
-              size={16}
-            />
-            <img src={Arrow} />
-          </div>
+          <button
+            className={classes.buttonStyle}
+            onClick={() => {
+              navigate(`/search`);
+            }}>
+            <div className={classes.allJobs}>
+              <CustomText
+                text={'Show all jobs'}
+                color="#4640DE"
+                fontFamily='Roboto-Medium'
+                size={16}
+              />
+              <img src={Arrow} />
+            </div>
+          </button>
         </div>
         <div className={classes.center}>
           <div className={classes.featuredList}>
             {categories?.map((item) => (
-              <FeaturedJobs 
-              category={item.category}
-              type={item.employmentType}
-              catTitle={item.title}
-              catLocation={item.location}
-              catCompany={item.company}
-              catDetails={item.details}
+              <FeaturedJobs
+                Id={item._id}
+                category={item.category}
+                type={item.employmentType}
+                catTitle={item.title}
+                catLocation={item.location}
+                catCompany={item.company}
+                catDetails={item.details}
               />
             ))}
           </div>

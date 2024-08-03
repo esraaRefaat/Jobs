@@ -7,7 +7,7 @@
 
 .container {
     width: 100%;
-    /* background-color: #4640DE; */
+ /* background-color: #4640DE;  */
 }
 
 /* Styles for devices with a width between 480px and 767px */
@@ -318,16 +318,23 @@
     .imgBackground {
         background-image: url("/home.svg");
         background-repeat: no-repeat;
-        height: 794px;
+      height: 100vh;
+        width: 100%;
+        /* background-color: brown; */
+        background-size: cover; 
+        position: relative;
     }
 
-    .formstyle {
-        padding-top: 560px;
-        margin-left: 125px
-    }
+   
+        .formstyle {
+            position: absolute;
+           top:80%;
+           left:8%;
+        }
+    
 
     .formContainer {
-        width: 800px;
+        width: 700px;
         background-color: #FFF;
         height: 89px;
         display: flex;

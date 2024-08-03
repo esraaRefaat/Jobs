@@ -33,8 +33,8 @@ const Login = () => {
     <div  style={{width:'50%',height:'100%'}}>
       
       <img src={logo}  style={{marginLeft:10,marginTop:10}}/>
-      <div style={{borderStyle:'outset',borderColor:'#4640DE',borderWidth:2,borderRadius:5,marginLeft:90,width:'545px',marginTop:35,height:'650px'}}>
-      <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+      <div style={{borderStyle:'outset',borderColor:'#4640DE',borderWidth:2,borderRadius:5,marginLeft:'15%',width:'70%',marginTop:'15%',height:'650px'}}>
+     <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
         <CustomText
           text={'Login'}
           color="#4640DE"

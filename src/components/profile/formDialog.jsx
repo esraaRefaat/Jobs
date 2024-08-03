@@ -6,7 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser } from "../../redux/slices/userDetailsSlice";
 import RowRadioButtonsGroup from "./inputs/radio";
 
@@ -18,8 +18,11 @@ export default function FormDialog({ user }) {
   const [number, setNumber] = React.useState(user.mobileNumber);
   const [gender, setGender] = React.useState(user.gender);
 
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE1NDFjZDJhYjM5MDRkMWZjYmZlZTciLCJyb2xlIjoiaHIiLCJlbWFpbCI6Im9tYXJAZ21haWwuY29tIiwiaWF0IjoxNzIyMTA2MzE3fQ.HWwenCVT3w95loZyw_ZeMBvh-gmb5yOj9pzbiXt8lMU";
+  // const token =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE1NDFjZDJhYjM5MDRkMWZjYmZlZTciLCJyb2xlIjoiaHIiLCJlbWFpbCI6Im9tYXJAZ21haWwuY29tIiwiaWF0IjoxNzIyMTA2MzE3fQ.HWwenCVT3w95loZyw_ZeMBvh-gmb5yOj9pzbiXt8lMU";
+  let id = useSelector((state) => state.Token.token.user_id);
+  let token = useSelector((state) => state.Token.token.token);
+
   const dispatch = useDispatch();
 
   const [name, setName] = React.useState(user.name);
@@ -40,7 +43,7 @@ export default function FormDialog({ user }) {
     console.log(formJson);
     handleClose();
     dispatch(updateUser({ data: formJson, token })).then(() => {
-      dispatch(getUser("66a541cd2ab3904d1fcbfee7")); // Update with the correct user ID
+      dispatch(getUser(id)); // Update with the correct user ID
     });
   };
 

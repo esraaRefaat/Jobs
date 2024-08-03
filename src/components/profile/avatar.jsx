@@ -9,9 +9,12 @@ const image = {
   female: "/Profile/avatar/Avatar Compilation (1).svg",
 };
 
-export default function ImageAvatars() {
+export default function ImageAvatars({ user }) {
   const [show, setShow] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [avatar, setAvatar] = React.useState(
+    `Profile/avatar/${user.avatar || 4}.svg`
+  );
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -20,6 +23,7 @@ export default function ImageAvatars() {
 
   const handleClose = () => {
     setOpen(false);
+    setShow(false);
     console.log("flase");
   };
 
@@ -31,7 +35,7 @@ export default function ImageAvatars() {
     >
       <Avatar
         alt="Cindy Baker"
-        src={image.male}
+        src={avatar}
         sx={{
           width: 100,
           height: 100,
@@ -59,6 +63,7 @@ export default function ImageAvatars() {
       <AvatarFormDialog
         handleClose={handleClose}
         open={open}
+        avatar={avatar}
       ></AvatarFormDialog>
     </Box>
   );

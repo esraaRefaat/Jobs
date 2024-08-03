@@ -11,14 +11,18 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+// const pages = ["Products", "Pricing", "Blog"];
+// const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
+  const usertoken = useSelector((state) => state.Token.token);
+  console.log("this", usertoken);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,9 +39,9 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
   const location = useLocation();
-  const user = React.useState((state) => state);
-  console.log(user);
-  console.log(location.pathname);
+  // const user = React.useState((state) => state);
+  // console.log(user);
+  // console.log(location.pathname);
 
   return (
     <AppBar
@@ -50,9 +54,14 @@ function ResponsiveAppBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src="/logo.svg" alt="" />
+          <img
+            src="/logo.svg"
+            alt=""
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          />
           {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="a"
@@ -66,45 +75,9 @@ function ResponsiveAppBar() {
               color: "inherit",
               textDecoration: "none",
             }}
-          ></Typography>
+          ></Typography> */}
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -122,15 +95,25 @@ function ResponsiveAppBar() {
             }}
           >
             LOGO
-          </Typography>
-          <Box
+          </Typography> */}
+
+          <Box //left container
             sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
-              justifyContent: "flex-end",
             }}
           >
-            {pages.map((page) => (
+            <Box
+              sx={{
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
+                marginRight: 3,
+              }}
+            >
+              {/* {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -138,7 +121,54 @@ function ResponsiveAppBar() {
               >
                 {page}
               </Button>
-            ))}
+            ))} */}
+              <Button // login & signup container
+                key={Math.random()}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  navigate("/");
+                }}
+                sx={{
+                  my: 2,
+                  color: "black",
+                  display: "block",
+                  color: location.pathname === "/" ? "primary" : "grey",
+                }}
+              >
+                Home
+              </Button>
+            </Box>
+            <Box
+              sx={{
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
+                marginRight: 3,
+              }}
+            >
+              {/* {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                {page}
+              </Button>
+            ))} */}
+              <Button
+                key={Math.random()}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  navigate("/search");
+                }}
+                sx={{
+                  my: 2,
+                  display: "block",
+                  color: location.pathname === "/search" ? "primary" : "grey",
+                }}
+              >
+                find jobs
+              </Button>
+            </Box>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -163,11 +193,45 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {/* {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
+              <MenuItem
+                key={Math.random()}
+                onClick={() => {
+                  handleCloseUserMenu();
+                  navigate("/profile");
+                }}
+              >
+                <Typography
+                  sx={{
+                    color:
+                      location.pathname === "/profile" ? "primary" : "black",
+                  }}
+                  textAlign="center"
+                >
+                  Profile
+                </Typography>
+              </MenuItem>
+              <MenuItem
+                key={Math.random()}
+                onClick={() => {
+                  handleCloseUserMenu();
+                  navigate("/login");
+                }}
+              >
+                <Typography
+                  sx={{
+                    color:
+                      location.pathname === "/signup" ? "primary" : "black",
+                  }}
+                  textAlign="center"
+                >
+                  Logout
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

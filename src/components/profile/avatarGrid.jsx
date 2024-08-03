@@ -3,7 +3,11 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Avatar, Container, Typography } from "@mui/material";
 
-export default function ResponsiveGrid({ onAvatarSelect, currentAvatar }) {
+export default function ResponsiveGrid({
+  onAvatarSelect,
+  currentAvatar,
+  handleAvatar,
+}) {
   return (
     <Container maxWidth="md">
       <Box sx={{ flexGrow: 1, marginTop: 4 }}>
@@ -23,8 +27,8 @@ export default function ResponsiveGrid({ onAvatarSelect, currentAvatar }) {
                   height: 100,
                   border:
                     currentAvatar === `Profile/avatar/${index + 1}.svg`
-                      ? "4px solid #1976d2"
-                      : "2px solid #f0f0f0",
+                      ? "5px solid #1976d2"
+                      : "3px solid #f0f0f0",
                   boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                   transition: "all 0.3s ease-in-out",
                   cursor: "pointer",
@@ -36,7 +40,7 @@ export default function ResponsiveGrid({ onAvatarSelect, currentAvatar }) {
                 alt={`Avatar ${index + 1}`}
                 src={`Profile/avatar/${index + 1}.svg`}
                 onClick={() =>
-                  onAvatarSelect(`Profile/avatar/${index + 1}.svg`)
+                  handleAvatar(`Profile/avatar/${index + 1}.svg`, index + 1)
                 }
               />
             </Grid>

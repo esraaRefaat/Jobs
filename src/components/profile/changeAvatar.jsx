@@ -7,16 +7,28 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import AvatarGrid from "./avatarGrid";
-export default function FormDialog({ handleClose, open }) {
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, updateUser } from "../../redux/slices/userDetailsSlice";
+export default function FormDialog({ handleClose, open, avatar }) {
   // const [open, setOpen] = React.useState(false);
-
   // const handleClickOpen = () => {
   //   setOpen(true);
   // };
-
   // const handleClose = () => {
   //   setOpen(false);
   // };
+  const dispatch = useDispatch();
+  let id = useSelector((state) => state.Token.token.user_id);
+  let token = useSelector((state) => state.Token.token.token);
+
+  const [seletedAva, setSelectedAva] = React.useState(avatar);
+  const [imgIndex, setImageIndex] = React.useState(4);
+
+  const handleAvatar = (avatar, index) => {
+    setSelectedAva(avatar);
+    setImageIndex(index);
+    console.log(index, seletedAva);
+  };
 
   return (
     <React.Fragment>
@@ -35,6 +47,11 @@ export default function FormDialog({ handleClose, open }) {
             const email = formJson.email;
             console.log(email);
             handleClose();
+            dispatch(updateUser({ data: { avatar: imgIndex }, token })).then(
+              () => {
+                dispatch(getUser(id)); // Update with the correct user ID
+              }
+            );
           },
         }}
       >
@@ -43,7 +60,10 @@ export default function FormDialog({ handleClose, open }) {
           <DialogContentText>
             Select below image to update your avatar
           </DialogContentText>
-          <AvatarGrid></AvatarGrid>
+          <AvatarGrid
+            currentAvatar={seletedAva}
+            handleAvatar={handleAvatar}
+          ></AvatarGrid>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

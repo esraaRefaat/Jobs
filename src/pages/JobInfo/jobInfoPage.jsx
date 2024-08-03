@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { jobInfoAction } from "../../redux/slices/jobInfoSlice.jsx";
 import JobInfoCard from "../../components/jobInfo/jobInfoCard.jsx";
 import { applyJobAction } from "../../redux/slices/applyJobSlice.jsx";
@@ -11,7 +11,6 @@ import ApplicantCard from "../../components/jobInfo/applicantCard.jsx";
 import ApplicantDetailsDialog from "../../components/jobInfo/applicantDetailsDialog.jsx";
 import { CircularProgress, Grid } from "@mui/material";
 import { getUser } from "../../redux/slices/userDetailsSlice.jsx";
-
 
 const JobInfoPage = () => {
   const { id } = useParams();
@@ -28,6 +27,10 @@ const JobInfoPage = () => {
   const token = useSelector((state) => state.Token.token);
   const isCreator = jobInfo?.createdBy?._id == token?.user_id;
   const isAdmin = token?.user_role === "admin";
+  const isApplied = jobInfo?.applicants.some(
+    (applicant) => applicant._id === token?.user_id
+  );
+
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
   useEffect(() => {
@@ -40,40 +43,46 @@ const JobInfoPage = () => {
     }
   }, [dispatch, id]);
 
-
-
-  const handleApply = async(jobId) => {
-
+  const handleApply = async (jobId) => {
     try {
-      const result = await dispatch(applyJobAction({ url: `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/apply/${jobId}`, token: token.token })).unwrap();
-       await dispatch(getUser({ url: `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/apply/${jobId}`, token: token.token })).unwrap();
-
-      alert(result.message || 'Applied successfully!');
+      await dispatch(
+        applyJobAction({
+          url: `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/apply/${jobId}`,
+          token: token.token,
+        })
+      ).unwrap();
+      dispatch(
+        jobInfoAction(
+          `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/${jobId}`
+        )
+      );
+      alert("Applied successfully!");
     } catch (error) {
-      alert(error.message || 'You need to sign in to apply.');
+      alert(error.message || "You need to sign in to apply.");
     }
   };
 
   const handleEdit = () => {
     setIsUpdateModalOpen(true);
-
   };
 
   const handleDelete = async (jobId) => {
-
-    if(isAdmin){
-      deleteJobUrl="https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/delete/"
+    if (isAdmin) {
+      deleteJobUrl =
+        "https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/delete/";
     }
 
     try {
-      const result = await dispatch(deleteJobAction({ url: `${deleteJobUrl}${jobId}`, token: token.token })).unwrap();
-      
-      alert(result.message || 'Job deleted successfully!');
-  
+      await dispatch(
+        deleteJobAction({ url: `${deleteJobUrl}${jobId}`, token: token.token })
+      ).unwrap();
+
+      alert("Job deleted successfully!");
+
       dispatch(SearchAction(`${baseSearchUrl}`));
-      navigate('/search');
+      navigate("/search");
     } catch (error) {
-      alert(error.message || 'Failed to delete the job.');
+      alert("Failed to delete the job.");
     }
   };
 
@@ -86,15 +95,14 @@ const JobInfoPage = () => {
     setIsDialogOpen(false);
     setSelectedApplicant(null);
   };
-  
 
-  if (isLoading) return <CircularProgress size={24}/>;
+  if (isLoading) return <CircularProgress size={24} />;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div style={{padding:"20px"}}>
+    <div style={{ padding: "20px" }}>
       <h1>Job Info</h1>
-      
+
       {jobInfo && (
         <div>
           {jobInfo ? (
@@ -102,6 +110,7 @@ const JobInfoPage = () => {
               jobInfo={jobInfo}
               isCreator={isCreator}
               isAdmin={isAdmin}
+              isApplied={isApplied}
               onApply={handleApply}
               onEdit={handleEdit}
               onDelete={handleDelete}
@@ -110,33 +119,39 @@ const JobInfoPage = () => {
             <p>No job information available.</p>
           )}
           <UpdateJobForm
-        isOpen={isUpdateModalOpen}
-        onRequestClose={() => {setIsUpdateModalOpen(false);
-          dispatch(
-            jobInfoAction(
-              `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/${id}`
-            )
-          );
-        }}
-        jobInfo={jobInfo}
-      />
-       {isCreator && (<>
-        <h2>Applicants</h2>
-          <Grid container spacing={2}>
-            {jobInfo.applicants.map(applicant => (
-              <Grid item key={applicant._id} xs={12} sm={6} md={3}>
-                <ApplicantCard applicant={applicant} onClick={handleApplicantClick} />
+            isOpen={isUpdateModalOpen}
+            onRequestClose={() => {
+              setIsUpdateModalOpen(false);
+              dispatch(
+                jobInfoAction(
+                  `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/${id}`
+                )
+              );
+            }}
+            jobInfo={jobInfo}
+          />
+          {isCreator && (
+            <>
+              <h2>Applicants</h2>
+              <Grid container spacing={2}>
+                {jobInfo.applicants.map((applicant) => (
+                  <Grid item key={applicant._id} xs={12} sm={6} md={3}>
+                    <ApplicantCard
+                      applicant={applicant}
+                      onClick={handleApplicantClick}
+                    />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-          {selectedApplicant && (
-            <ApplicantDetailsDialog
-              applicant={selectedApplicant}
-              isOpen={isDialogOpen}
-              onClose={handleDialogClose}
-            />
+              {selectedApplicant && (
+                <ApplicantDetailsDialog
+                  applicant={selectedApplicant}
+                  isOpen={isDialogOpen}
+                  onClose={handleDialogClose}
+                />
+              )}
+            </>
           )}
-       </>)}
         </div>
       )}
     </div>

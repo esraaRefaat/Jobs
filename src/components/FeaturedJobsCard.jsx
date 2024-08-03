@@ -34,6 +34,31 @@ export default function FeaturedJobsCard({ category, type, catTitle, catLocation
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  let categoriespallete = ['business', 'design', 'engineering', 'finance', 'human', 'marketing', 'sales', 'technology']
+  let categoryColors = [
+    "rgba(70, 64, 222, 0.1)",
+    "rgba(86, 205, 173, 0.1)",
+    "rgba(95, 214, 224, 0.1)",
+    "rgba(240, 242, 58, 0.1)",
+    "rgba(219, 136, 237, 0.1)",
+    "rgba(235, 133, 51, 0.1)",
+    "rgba(240, 76, 190, 0.1)",
+    "rgba(255, 101, 80, 0.1)"
+  ]
+  let categoryColorsText = [
+    "rgba(70, 64, 222, 1)",
+    "rgba(86, 205, 173, 1)",
+    "rgba(95, 214, 224, 1)",
+    "rgba(240, 242, 58, 1)",
+    "rgba(219, 136, 237, 1)",
+    "rgba(235, 133, 51, 1)",
+    "rgba(240, 76, 190, 1)",
+    "rgba(255, 101, 80, 1)"
+  ]
+  let category2 = `${category}`;
+  let index = categoriespallete.indexOf(category2)
+  let colorBG = categoryColors[index];
+  let colorText = categoryColorsText[index];
 
   return (
     <Card sx={{ width: '274px', height: '283px' }}>
@@ -52,15 +77,25 @@ export default function FeaturedJobsCard({ category, type, catTitle, catLocation
             {catCompany}  <img src={`/dot.svg`} />  {catLocation}
           </Typography>
         </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ marginTop: '16px' ,whiteSpace: 'nowrap',
-            width: 240,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'}}>
+        <Typography variant="body2" color="text.secondary" sx={{
+          marginTop: '16px', whiteSpace: 'nowrap',
+          width: 240,
+          overflow: 'hidden',
+          textOverflow: 'ellipsis'
+        }}>
           {catDetails}
         </Typography>
         <Box display="flex" gap={1} mt={2}>
-          <Chip label="Marketing" sx={{
-            backgroundColor: '#EB85331A', color: '#FFB836'  }} />
+          <Chip label={category}
+            sx={{
+              backgroundColor: `${colorBG}`,
+              color: `${colorText}`,
+             display:'flex',
+             flexDirection:'row',
+             justifyContent:'center',
+             alignItems:'center',
+             textAlign:'center'
+            }} />
         </Box>
       </CardContent>
     </Card>

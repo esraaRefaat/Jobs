@@ -32,8 +32,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(usersAction())
   }, [])
-
-
+ 
   return (
     <>
       <div className={classes.container} >

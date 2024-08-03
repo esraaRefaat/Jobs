@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const changePwd = createAsyncThunk(
-  "pwd/changePwd",
+export const addJob = createAsyncThunk(
+  "job/addJob",
   async ({ data, token }) => {
-    const res = await axios.patch(
-      "https://jobboardbackend-u9zm.onrender.com/api/v1/auth/changepassword/",
+    const res = await axios.post(
+      "https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/",
       data,
       {
         headers: {
@@ -18,10 +18,10 @@ export const changePwd = createAsyncThunk(
   }
 );
 
-const pwd = createSlice({
-  name: "pwd",
+const job = createSlice({
+  name: "job",
   initialState: {
-    pwd: {},
+    job: {},
     status: "idle",
     error: null,
   },
@@ -41,5 +41,5 @@ const pwd = createSlice({
       });
   },
 });
-export default pwd.reducer;
+export default job.reducer;
 

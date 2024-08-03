@@ -12,6 +12,7 @@ import applyJobReducer from "./slices/applyJobSlice.jsx";
 import updateJobReducer from "./slices/updateJobSlice.jsx";
 import deleteJobReducer from "./slices/deleteJobSlice.jsx";
 import avatarReducer from "./slices/avatarSlice";
+import pwdReducer from "./slices/changePwd";
 
 const store = configureStore({
   reducer: {
@@ -28,6 +29,7 @@ const store = configureStore({
     updateJob: updateJobReducer,
     deleteJob: deleteJobReducer,
     avatar: avatarReducer,
+    pwd: pwdReducer,
   },
 });
 

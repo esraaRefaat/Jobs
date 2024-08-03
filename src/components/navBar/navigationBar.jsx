@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import AddJobFrom from "../../components/addJob/addJobCard";
 
 // const pages = ["Products", "Pricing", "Blog"];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -23,6 +24,9 @@ function ResponsiveAppBar() {
   const navigate = useNavigate();
   const usertoken = useSelector((state) => state.Token.token);
 
+  const message = useSelector((state) => state.Token.token.message);
+  const role = useSelector((state) => state.Token.token.user_role);
+  console.log(role, message);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -103,134 +107,181 @@ function ResponsiveAppBar() {
               display: { xs: "none", md: "flex" },
             }}
           >
-            <Box
-              sx={{
-                display: { xs: "none", md: "flex" },
-                justifyContent: "flex-end",
-                marginRight: 3,
-              }}
-            >
-              {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))} */}
-              <Button // login & signup container
-                key={Math.random()}
-                onClick={() => {
-                  handleCloseNavMenu();
-                  navigate("/");
-                }}
+            {!message && (
+              <Box
                 sx={{
-                  my: 2,
-                  color: "black",
-                  display: "block",
-                  color: location.pathname === "/" ? "primary" : "grey",
+                  display: { xs: "none", md: "flex" },
+                  justifyContent: "flex-end",
+                  marginRight: 3,
+                  gap: 3,
                 }}
               >
-                Home
-              </Button>
-            </Box>
-            <Box
-              sx={{
-                display: { xs: "none", md: "flex" },
-                justifyContent: "flex-end",
-                marginRight: 3,
-              }}
-            >
-              {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))} */}
-              <Button
-                key={Math.random()}
-                onClick={() => {
-                  handleCloseNavMenu();
-                  navigate("/search");
-                }}
+                <Button
+                  primary
+                  key={Math.random()}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/login");
+                  }}
+                  sx={{
+                    my: 2,
+                    display: "block",
+                    // color: location.pathname === "/login" ? "primary" : "grey",
+                  }}
+                >
+                  Login
+                </Button>
+                <Button
+                  variant="contained"
+                  primary
+                  key={Math.random()}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/signup");
+                  }}
+                  sx={{
+                    my: 2,
+                    display: "block",
+
+                    // color: location.pathname === "/login" ? "primary" : "grey",
+                  }}
+                >
+                  Signup
+                </Button>
+              </Box>
+            )}
+
+            {role == "hr" && (
+              <Box
                 sx={{
-                  my: 2,
-                  display: "block",
-                  color: location.pathname === "/search" ? "primary" : "grey",
+                  display: { xs: "none", md: "flex" },
+                  justifyContent: "flex-end",
+                  marginLeft: 3,
+                  gap: 3,
                 }}
               >
-                find jobs
-              </Button>
-            </Box>
+                <AddJobFrom></AddJobFrom>
+
+                {/* <Button
+                  variant="outlined"
+                  primary
+                  key={Math.random()}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/login");
+                  }}
+                  sx={{
+                    my: 2,
+                    display: "block",
+                  }}
+                >
+                  Add Job
+                </Button> */}
+              </Box>
+            )}
+
+            {message && (
+              <Box // login & signup container
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  justifyContent: "flex-end",
+                  marginRight: 3,
+                }}
+              >
+                <Button
+                  key={Math.random()}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/");
+                  }}
+                  sx={{
+                    my: 2,
+                    color: "black",
+                    display: "block",
+                    color: location.pathname === "/" ? "primary" : "grey",
+                  }}
+                >
+                  Home
+                </Button>
+
+                <Button
+                  key={Math.random()}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    navigate("/search");
+                  }}
+                  sx={{
+                    my: 2,
+                    display: "block",
+                    color: location.pathname === "/search" ? "primary" : "grey",
+                  }}
+                >
+                  find jobs
+                </Button>
+              </Box>
+            )}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+          {message && (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem
+                  key={Math.random()}
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    navigate("/profile");
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color:
+                        location.pathname === "/profile" ? "primary" : "black",
+                    }}
+                    textAlign="center"
+                  >
+                    Profile
+                  </Typography>
                 </MenuItem>
-              ))} */}
-              <MenuItem
-                key={Math.random()}
-                onClick={() => {
-                  handleCloseUserMenu();
-                  navigate("/profile");
-                }}
-              >
-                <Typography
-                  sx={{
-                    color:
-                      location.pathname === "/profile" ? "primary" : "black",
+                <MenuItem
+                  key={Math.random()}
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    navigate("/login");
                   }}
-                  textAlign="center"
                 >
-                  Profile
-                </Typography>
-              </MenuItem>
-              <MenuItem
-                key={Math.random()}
-                onClick={() => {
-                  handleCloseUserMenu();
-                  navigate("/login");
-                }}
-              >
-                <Typography
-                  sx={{
-                    color:
-                      location.pathname === "/signup" ? "primary" : "black",
-                  }}
-                  textAlign="center"
-                >
-                  Logout
-                </Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
+                  <Typography
+                    sx={{
+                      color:
+                        location.pathname === "/signup" ? "primary" : "black",
+                    }}
+                    textAlign="center"
+                  >
+                    Logout
+                  </Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

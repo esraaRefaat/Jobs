@@ -9,7 +9,7 @@ import { Box, Divider } from "@mui/material";
 import AppliedJobs from "./appliedJobs";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import NoJobsApplied from "./noAppliedJobs";
+import NoAddedJobs from "./noAddedJobs";
 
 export default function MediaCard({ user }) {
   const jobs = useSelector((state) => state.getUsers.users);
@@ -25,9 +25,7 @@ export default function MediaCard({ user }) {
   //   });
   // });
   // console.log(appliedJobs);
-  const appliedJobs = jobs?.filter((job) =>
-    job.applicants.some((applicant) => applicant._id === userId)
-  );
+  const appliedJobs = jobs?.filter((job) => job.createdBy._id === userId);
 
   const hadnleSeeAll = () => {
     setShowAll(true);
@@ -59,7 +57,7 @@ export default function MediaCard({ user }) {
         </Box>
       </CardContent>
       <Divider variant="middle" />
-      {appliedJobs.length == 0 && <NoJobsApplied></NoJobsApplied>}
+      {appliedJobs.length == 0 && <NoAddedJobs></NoAddedJobs>}
 
       {appliedJobs.length > 0 && (
         <Box

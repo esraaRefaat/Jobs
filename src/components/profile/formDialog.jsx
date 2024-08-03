@@ -8,7 +8,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, updateUser } from "../../redux/slices/userDetailsSlice";
-import RowRadioButtonsGroup from "./inputs/radio";
 
 export default function FormDialog({ user }) {
   const [open, setOpen] = React.useState(false);
@@ -17,7 +16,7 @@ export default function FormDialog({ user }) {
   const [education, setEducation] = React.useState(user.education);
   const [number, setNumber] = React.useState(user.mobileNumber);
   const [gender, setGender] = React.useState(user.gender);
-  const [experience, setExperience] = React.useState(user.gender);
+  const [experience, setExperience] = React.useState(user.experience);
 
   // const token =
   //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE1NDFjZDJhYjM5MDRkMWZjYmZlZTciLCJyb2xlIjoiaHIiLCJlbWFpbCI6Im9tYXJAZ21haWwuY29tIiwiaWF0IjoxNzIyMTA2MzE3fQ.HWwenCVT3w95loZyw_ZeMBvh-gmb5yOj9pzbiXt8lMU";
@@ -131,7 +130,6 @@ export default function FormDialog({ user }) {
             value={position}
             onChange={(e) => setPosition(e.target.value)}
           />
-          <RowRadioButtonsGroup user={user}></RowRadioButtonsGroup>
           <TextField
             required
             margin="normal"

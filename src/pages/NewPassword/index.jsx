@@ -20,7 +20,6 @@ const NewPassword = ({ }) => {
   const dispatch = useDispatch()
   //const { useremail } = useParams()
   const location = useLocation();
-  //console.log('useremail',location.state?.useremail)
   const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
   const navigate = useNavigate();
   const PasswordSchema = Yup.object().shape({
@@ -57,7 +56,6 @@ const NewPassword = ({ }) => {
           validationSchema={PasswordSchema}
           onSubmit={values => {
             //values.email='esrarefaat@gmail.com'
-            console.log('valuessss',values)
             dispatch(setPasswordAction({ userData: values, url: Url }))
               .unwrap()
               .then((response) => {

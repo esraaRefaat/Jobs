@@ -5,7 +5,6 @@ export const deleteJobAction = createAsyncThunk(
   "deleteJob",
   async ({ url, token }, { rejectWithValue }) => {
     try {
-      console.log(url, token);
       const response = await axios.delete(
         url,
         {

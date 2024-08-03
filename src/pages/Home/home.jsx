@@ -15,7 +15,6 @@ import { usersAction } from "../../redux/slices/usersSlice";
 const Home = () => {
 
   const categories = useSelector((state) => state.getUsers.users);
-  console.log('cat', categories)
   const dispatch = useDispatch()
   const [searchWords, setSearchWords] = useState("");
   const navigate = useNavigate();

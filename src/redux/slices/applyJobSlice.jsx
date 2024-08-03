@@ -5,7 +5,6 @@ export const applyJobAction = createAsyncThunk(
   "applyJob",
   async ({ url, token }, { rejectWithValue }) => {
     try {
-      console.log(url, token);
       const response = await axios.post(
         url,
         {},

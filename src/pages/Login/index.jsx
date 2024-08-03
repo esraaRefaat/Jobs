@@ -51,18 +51,16 @@ const Login = () => {
           }}
           validationSchema={LoginSchema}
           onSubmit={values => {
-            console.log(values)
+         
             dispatch(loginAction({ userData: values, url: loginUrl }))
             .unwrap()
             .then((response) => {
-              console.log('res', response)
               dispatch(getToken(response))
               navigate('/');
              
 
             })
             .catch((error) => {
-             // console.error("Sign-up failed:", error);
               toast.error(error.error);
             });
           }}

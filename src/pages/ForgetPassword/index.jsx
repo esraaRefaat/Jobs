@@ -40,12 +40,10 @@ const ForgetPassword = () => {
           }}
           validationSchema={Schema}
           onSubmit={values => {
-           // console.log(values.email)
-            // navigate('/newpassword');
+          
             dispatch(sendEmailAction({ userData: values, url: Url }))
               .unwrap()
               .then((response) => {
-                console.log('res', response)
                 navigate('/newpassword', {
                   state: {
                     useremail: values.email ,
@@ -55,7 +53,6 @@ const ForgetPassword = () => {
 
               })
               .catch((error) => {
-                // console.error("Sign-up failed:", error);
                 toast.error(error.error);
               });
           }}

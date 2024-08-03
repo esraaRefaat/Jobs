@@ -70,18 +70,15 @@ const SignUp = () => {
           }}
           validationSchema={SignupSchema}
           onSubmit={(values) => {
-            // console.log(values)
             dispatch(signUpAction({ userData: values, url: signUpUrl }))
               .unwrap()
               .then((response) => {
-                console.log('res', response)
                 dispatch(getToken(response))
                 navigate('/');
                
 
               })
               .catch((error) => {
-                // console.error("Sign-up failed:", error);
                 toast.error(error.error);
               });
           }}

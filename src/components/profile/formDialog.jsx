@@ -41,7 +41,7 @@ export default function FormDialog({ user }) {
     const formData = new FormData(event.currentTarget);
     const formJson = Object.fromEntries(formData.entries());
     //const email = formJson.email;
-    console.log(formJson);
+   
     handleClose();
     dispatch(updateUser({ data: formJson, token })).then(() => {
       dispatch(getUser(id)); // Update with the correct user ID
@@ -65,7 +65,6 @@ export default function FormDialog({ user }) {
           //   const formData = new FormData(event.currentTarget);
           //   const formJson = Object.fromEntries(formData.entries());
           //   const email = formJson.email;
-          //   console.log(email, formJson);
           //   handleClose();
           //   React.useEffect(() => {
           //     dispatch(updateUser(formJson, token));

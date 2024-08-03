@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CategoryCard({ category,number }) {
     const navigate = useNavigate();
-  //  console.log(category.replace(/\s/g, '').toLowerCase())
     return (
         <CardActions onClick={()=>
             navigate(`/search?keyword=${category.toLowerCase()}`)

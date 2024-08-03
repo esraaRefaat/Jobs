@@ -18,13 +18,13 @@ export default function ImageAvatars({ user }) {
 
   const handleClickOpen = () => {
     setOpen(true);
-    console.log("true");
+   
   };
 
   const handleClose = () => {
     setOpen(false);
     setShow(false);
-    console.log("flase");
+    
   };
 
   return (

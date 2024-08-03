@@ -27,7 +27,7 @@ export default function FormDialog({ handleClose, open, avatar }) {
   const handleAvatar = (avatar, index) => {
     setSelectedAva(avatar);
     setImageIndex(index);
-    console.log(index, seletedAva);
+   
   };
 
   return (
@@ -45,7 +45,7 @@ export default function FormDialog({ handleClose, open, avatar }) {
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
             const email = formJson.email;
-            console.log(email);
+         
             handleClose();
             dispatch(updateUser({ data: { avatar: imgIndex }, token })).then(
               () => {

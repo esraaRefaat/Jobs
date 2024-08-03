@@ -32,11 +32,10 @@ function LoginWithFacebook() {
       const result = await signInWithPopup(auth, provider);
      
       setUser(result.user); 
-      console.log('dataaaa',result.user)
       setIsLogin(true); 
     } catch (e) {
      
-      console.log(`login error ${e}`);
+
       setIsLogin(false); 
     }
   }

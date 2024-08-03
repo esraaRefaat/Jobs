@@ -8,8 +8,6 @@ export const getUsers = createAsyncThunk("users/getUser", async () => {
   // let id = `/${id}`;
   // const res = await axios.get(baseURL + id);
   const res = await axios.get(baseURL);
-
-  console.log("res", res.data);
   return res.data;
 });
 
@@ -32,7 +30,6 @@ export const updateUser = createAsyncThunk(
         },
       }
     );
-    console.log(response.data);
     return response.data;
   }
 );

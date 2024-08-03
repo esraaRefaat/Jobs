@@ -22,7 +22,7 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
   const usertoken = useSelector((state) => state.Token.token);
-  console.log("this", usertoken);
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -39,10 +39,7 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
   const location = useLocation();
-  // const user = React.useState((state) => state);
-  // console.log(user);
-  // console.log(location.pathname);
-
+  
   return (
     <AppBar
       position="sticky"

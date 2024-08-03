@@ -12,7 +12,7 @@ export default function profile() {
   // store.dispatch(getUsers());
   const dispatch = useDispatch();
   const usersArr = useSelector((state) => state.users.users.document);
-  console.log(usersArr);
+ 
 
   useEffect(() => {
     dispatch(getUser(id));

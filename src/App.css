@@ -59,6 +59,9 @@
     url("./fonts/Roboto-ThinItalic.ttf") format("truetype");
 }
 
+a {
+  text-decoration: none; 
+}
 
 /* #root {
   max-width: 1280px;

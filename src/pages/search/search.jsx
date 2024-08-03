@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchAction } from "../../redux/slices/searchSlice.jsx";
 import SearchCardMUI from "../../components/searchCard/searchCardMUI.jsx";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import FilterCard from "../../components/searchCard/filterCard.jsx";
 
 const Search = () => {
@@ -29,7 +29,7 @@ const Search = () => {
     if (searchWord) {
       dispatch(SearchAction(`${baseSearchUrl}?keyword=${searchWord}`));
     }
-  }, [dispatch, baseSearchUrl, searchWord]);
+  }, [dispatch, searchWord]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +61,9 @@ const Search = () => {
         {isLoading && <p>Loading...</p>}
         {error && <p>Error loading jobs.</p>}
         {jobs.map((job) => (
-          <SearchCardMUI key={job.id} job={job}></SearchCardMUI>
+          <Link key={job._id} to={`/jobinfo/${job._id}`}>
+            <SearchCardMUI job={job} />
+          </Link>          
         ))}
       </div>
     </div>

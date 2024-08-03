@@ -6,7 +6,7 @@ import user from "/user.svg";
 import logo from "/logo.svg";
 import password from "/password.svg";
 import CustomButton from "../../components/CustomButton";
-import facebook from "/facebook.svg";
+// import facebook from "/facebook.svg";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -236,7 +236,7 @@ const SignUp = () => {
             </>
           )}
         </Formik>
-        <div
+        {/* <div
           style={{
             width: 167,
             display: "flex",
@@ -270,6 +270,8 @@ const SignUp = () => {
           ></div>
         </div>
         <img src={facebook} style={{ width: 45, height: 45 }} />
+         */}
+        
         <div
           style={{
             marginTop: 42,

@@ -136,7 +136,7 @@ const Login = () => {
             </>
           )}
         </Formik>
-        <div style={{
+        {/* <div style={{
           width: 167,
           display: 'flex',
           flexDirection: 'row',
@@ -163,7 +163,7 @@ const Login = () => {
             backgroundColor: '#4640DE'
           }}></div>
         </div>
-        <img src={facebook} style={{ width: 45, height: 45 }} />
+        <img src={facebook} style={{ width: 45, height: 45 }} /> */}
         <div style={{
           marginTop: 42,
           display: 'flex',

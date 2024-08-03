@@ -49,10 +49,10 @@ export default function MediaCard({ user }) {
           marginTop={1}
         >
           <Typography gutterBottom variant="h5" component="div">
-            Applied Jobs
+            Added Jobs
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            see below the list of your applied jobs
+            see below the list of your added jobs
           </Typography>
         </Box>
       </CardContent>

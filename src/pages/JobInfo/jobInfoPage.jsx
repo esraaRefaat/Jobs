@@ -10,6 +10,7 @@ import UpdateJobForm from "../../components/jobInfo/updateJobCard.jsx";
 import ApplicantCard from "../../components/jobInfo/applicantCard.jsx";
 import ApplicantDetailsDialog from "../../components/jobInfo/applicantDetailsDialog.jsx";
 import { CircularProgress, Grid } from "@mui/material";
+import { getUser } from "../../redux/slices/userDetailsSlice.jsx";
 
 
 const JobInfoPage = () => {
@@ -45,7 +46,8 @@ const JobInfoPage = () => {
 
     try {
       const result = await dispatch(applyJobAction({ url: `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/apply/${jobId}`, token: token.token })).unwrap();
-      
+       await dispatch(getUser({ url: `https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/apply/${jobId}`, token: token.token })).unwrap();
+
       alert(result.message || 'Applied successfully!');
     } catch (error) {
       alert(error.message || 'You need to sign in to apply.');

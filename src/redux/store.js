@@ -6,6 +6,7 @@ import loginReducer from "./slices/loginSlice.jsx";
 import forgetPasswordReducer from "./slices/sendemailSlice.jsx";
 import PasswordReducer from "./slices/setPassword.jsx";
 import tokenReducer from "./slices/tokenSlice.jsx";
+import getUsersReducer from "./slices/usersSlice.jsx";
 
 const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
     authlogin: loginReducer,
     authForgetPasswerd: forgetPasswordReducer,
     authPasswerd: PasswordReducer,
-    Token: tokenReducer
+    Token: tokenReducer,
+    getUsers: getUsersReducer
 
   },
 });

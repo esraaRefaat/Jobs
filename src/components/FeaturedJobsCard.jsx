@@ -15,7 +15,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
-import { Box , Chip} from '@mui/material';
+import { Box, Chip } from '@mui/material';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,7 +28,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function FeaturedJobsCard() {
+export default function FeaturedJobsCard({ category, type, catTitle, catLocation, catCompany, catDetails }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -36,39 +36,31 @@ export default function FeaturedJobsCard() {
   };
 
   return (
-    <Card sx={{width:'274px',height:'283px'}}>
-      {/* <CardHeader
-      sx={{marginLeft:'24px',marginRight:'24px', marginTop:'24px',backgroundColor:'green'}}
-        avatar={
-          
-        }
-        action={
-           
-          }
+    <Card sx={{ width: '274px', height: '283px' }}>
 
-      /> */}
-         <CardContent sx={{display:'flex', justifyContent:'space-between'}}>
-         {/* <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar> */}
-          <Avatar sx={{ bgcolor: red[500] }} src="/1.jpg"/>
-          <Button variant="outlined">Full Time</Button>
-         </CardContent>
+      <CardContent sx={{ display: 'flex', justifyContent: 'space-between' }}>
+
+        <img src={`/categories/${category}.svg`} />
+        <Button variant="outlined">{type}</Button>
+      </CardContent>
       <CardContent>
-        <Box sx={{marginTop:'16px'}}>
-      <Typography variant="h5" sx={{color:'#25324B'}}>
-      Email Marketing
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary">
-        Revolut . Madrid, Spain
-        </Typography>
+        <Box sx={{ marginTop: '16px' }}>
+          <Typography variant="h5" sx={{ color: '#25324B' }}>
+            {catTitle}
+          </Typography>
+          <Typography variant="subtitle1" color="text.secondary">
+            {catCompany}  <img src={`/dot.svg`} />  {catLocation}
+          </Typography>
         </Box>
-        <Typography variant="body2" color="text.secondary" sx={{marginTop:'16px'}}>
-        Revolut is looking for Email Marketing to help team ma ...
+        <Typography variant="body2" color="text.secondary" sx={{ marginTop: '16px' ,whiteSpace: 'nowrap',
+            width: 240,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'}}>
+          {catDetails}
         </Typography>
         <Box display="flex" gap={1} mt={2}>
-          <Chip label="Marketing"  sx={{backgroundColor:'#EB85331A',color:'#FFB836'}}/>
-          <Chip label="Design" sx={{backgroundColor:'#56CDAD1A',color:'#56CDAD'}}/>
+          <Chip label="Marketing" sx={{
+            backgroundColor: '#EB85331A', color: '#FFB836'  }} />
         </Box>
       </CardContent>
     </Card>

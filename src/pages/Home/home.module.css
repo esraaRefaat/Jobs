@@ -5,12 +5,17 @@
     cursor: pointer;
 }
 
+.container {
+    width: 100%;
+    /* background-color: #4640DE; */
+}
+
 /* Styles for devices with a width between 480px and 767px */
 @media (min-width: 480px) and (max-width: 767px) {
     .container {
-        max-width: 768px;
+        /* max-width: 768px; */
         height: 2000px;
-        min-width: 480px;
+        /* min-width: 480px; */
 
     }
 
@@ -109,7 +114,7 @@
 /* Styles for devices with a width between 768px and 1023px */
 @media (min-width: 768px) and (max-width: 1023px) {
     .container {
-        max-width: 1024px;
+        /* max-width: 1024px; */
         height: 2000px;
     }
 
@@ -207,7 +212,7 @@
 /* Styles for devices with a width between 1024px and 1199px */
 @media (min-width: 1024px) and (max-width: 1199px) {
     .container {
-        max-width: 1200px;
+        /* max-width: 1200px; */
         height: 2000px;
     }
 
@@ -304,7 +309,7 @@
 /* Styles for devices with a width of 1200px or more */
 @media (min-width: 1200px) {
     .container {
-        max-width: 1440px;
+        /* max-width: 1440px; */
         height: 2000px;
         /* padding-inline: 45px; */
 

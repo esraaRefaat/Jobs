@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchAction } from "../../redux/slices/searchSlice.jsx";
-import SearchCardMUI from "../../components/searchCard/searchCardMUI.jsx";
 import { Link, useLocation } from "react-router-dom";
 import FilterCard from "../../components/searchCard/filterCard.jsx";
+import SearchJobCard from "../../components/searchCard/searchJobCard.jsx";
+import { Box, Button, CircularProgress, TextField } from "@mui/material";
 
 const Search = () => {
   const { jobs, isLoading, error } = useSelector((state) => state.search);
@@ -55,25 +56,40 @@ const Search = () => {
 
   return (
     <div style={{ display: "flex" }}>
-      <FilterCard onFilter={handleFilterChange} />
-      <div>
-        <h1>Search</h1>
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={searchWords} onChange={handleChange} />
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "Searching..." : "Search"}
-          </button>
-        </form>
+    <FilterCard onFilter={handleFilterChange} />
+    <div style={{ flex: 1, padding: "20px" }}>
+      <h1>Search</h1>
+      <form onSubmit={handleSubmit} style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
+      <Box sx={{ display: "flex", alignItems: "center", flex: 1 }}>
+            <TextField
+              label="Search"
+              variant="outlined"
+              value={searchWords}
+              onChange={handleChange}
+              style={{ marginRight: "10px", flex: 1 }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={isLoading}
+              style={{ height: "100%" }}
+              
+            >
+              {isLoading ? <CircularProgress size={24} /> : "Search"}
+            </Button>
+          </Box>
+      </form>
 
-        {isLoading && <p>Loading...</p>}
-        {error && <p>Error loading jobs.</p>}
-        {jobs.map((job) => (
-          <Link key={job._id} to={`/jobinfo/${job._id}`}>
-            <SearchCardMUI job={job} />
-          </Link>          
-        ))}
-      </div>
+      {isLoading &&  <CircularProgress size={24}/>}
+      {error && <p>Error loading jobs.</p>}
+      {jobs.map((job) => (
+        <Link key={job._id} to={`/jobinfo/${job._id}`} style={{ textDecoration: "none" }}>
+          <SearchJobCard job={job} />
+        </Link>
+      ))}
     </div>
+  </div>
   );
 };
 

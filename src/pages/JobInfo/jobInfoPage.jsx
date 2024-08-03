@@ -7,6 +7,10 @@ import { applyJobAction } from "../../redux/slices/applyJobSlice.jsx";
 import { deleteJobAction } from "../../redux/slices/deleteJobSlice.jsx";
 import { SearchAction } from "../../redux/slices/searchSlice.jsx";
 import UpdateJobForm from "../../components/jobInfo/updateJobCard.jsx";
+import ApplicantCard from "../../components/jobInfo/applicantCard.jsx";
+import ApplicantDetailsDialog from "../../components/jobInfo/applicantDetailsDialog.jsx";
+import { CircularProgress, Grid } from "@mui/material";
+
 
 const JobInfoPage = () => {
   const { id } = useParams();
@@ -15,6 +19,8 @@ const JobInfoPage = () => {
   const baseSearchUrl = "https://jobboardbackend-u9zm.onrender.com/api/v1/jobs";
   let deleteJobUrl = "https://jobboardbackend-u9zm.onrender.com/api/v1/jobs/";
 
+  const [selectedApplicant, setSelectedApplicant] = useState(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const { jobInfo, isLoading, error } = useSelector((state) => state.jobInfo);
 
@@ -68,13 +74,23 @@ const JobInfoPage = () => {
       alert(error.message || 'Failed to delete the job.');
     }
   };
+
+  const handleApplicantClick = (applicant) => {
+    setSelectedApplicant(applicant);
+    setIsDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+    setSelectedApplicant(null);
+  };
   
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <CircularProgress size={24}/>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div style={{padding:"20px"}}>
       <h1>Job Info</h1>
       
       {jobInfo && (
@@ -102,6 +118,23 @@ const JobInfoPage = () => {
         }}
         jobInfo={jobInfo}
       />
+       {isCreator && (<>
+        <h2>Applicants</h2>
+          <Grid container spacing={2}>
+            {jobInfo.applicants.map(applicant => (
+              <Grid item key={applicant._id} xs={12} sm={6} md={3}>
+                <ApplicantCard applicant={applicant} onClick={handleApplicantClick} />
+              </Grid>
+            ))}
+          </Grid>
+          {selectedApplicant && (
+            <ApplicantDetailsDialog
+              applicant={selectedApplicant}
+              isOpen={isDialogOpen}
+              onClose={handleDialogClose}
+            />
+          )}
+       </>)}
         </div>
       )}
     </div>

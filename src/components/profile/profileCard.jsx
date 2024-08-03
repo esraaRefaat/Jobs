@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import ImageAvatars from "./avatar";
 import { Box, Divider } from "@mui/material";
 import FormDialog from "./formDialog";
+import ChangePwdDialog from "./chnagePwdDialog";
 
 export default function MediaCard({ user }) {
   return (
@@ -29,7 +30,16 @@ export default function MediaCard({ user }) {
       >
         <ImageAvatars user={user}></ImageAvatars>
       </Box>
-      <Box sx={{ position: "absolute", right: 0, margin: 2 }}>
+      <Box
+        sx={{
+          position: "absolute",
+          right: 0,
+          margin: 2,
+          columnGap: 2,
+          display: "flex",
+        }}
+      >
+        <ChangePwdDialog></ChangePwdDialog>
         <FormDialog user={user}></FormDialog>
       </Box>
       <CardContent>

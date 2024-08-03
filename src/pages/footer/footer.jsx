@@ -67,7 +67,7 @@ export default function Footer() {
           }}
         >
           <Typography variant="body2" color="text.secondary">
-            © {new Date().getFullYear()} Company Name. All rights reserved.
+            © {new Date().getFullYear()} Fantasy Front End. All rights reserved.
           </Typography>
         </Box>
       </Container>

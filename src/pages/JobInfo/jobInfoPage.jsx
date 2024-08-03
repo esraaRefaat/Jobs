@@ -9,7 +9,7 @@ import { SearchAction } from "../../redux/slices/searchSlice.jsx";
 import UpdateJobForm from "../../components/jobInfo/updateJobCard.jsx";
 import ApplicantCard from "../../components/jobInfo/applicantCard.jsx";
 import ApplicantDetailsDialog from "../../components/jobInfo/applicantDetailsDialog.jsx";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 
 
 const JobInfoPage = () => {
@@ -86,7 +86,7 @@ const JobInfoPage = () => {
   };
   
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <CircularProgress size={24}/>;
   if (error) return <p>Error: {error}</p>;
 
   return (

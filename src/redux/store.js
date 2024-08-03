@@ -7,6 +7,14 @@ import forgetPasswordReducer from "./slices/sendemailSlice.jsx";
 import PasswordReducer from "./slices/setPassword.jsx";
 import tokenReducer from "./slices/tokenSlice.jsx";
 import getUsersReducer from "./slices/usersSlice.jsx";
+import jobInfoReducer from "./slices/jobInfoSlice.jsx";
+import applyJobReducer from "./slices/applyJobSlice.jsx";
+import updateJobReducer from "./slices/updateJobSlice.jsx";
+import deleteJobReducer from "./slices/deleteJobSlice.jsx";
+
+
+
+
 
 const store = configureStore({
   reducer: {
@@ -17,7 +25,15 @@ const store = configureStore({
     authForgetPasswerd: forgetPasswordReducer,
     authPasswerd: PasswordReducer,
     Token: tokenReducer,
-    getUsers: getUsersReducer
+    getUsers: getUsersReducer,
+    jobInfo: jobInfoReducer,
+    applyJob: applyJobReducer,
+    updateJob: updateJobReducer,
+    deleteJob: deleteJobReducer,
+
+
+
+    
 
   },
 });

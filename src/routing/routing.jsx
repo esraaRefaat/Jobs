@@ -9,6 +9,8 @@ import Login from '../pages/Login'
 import Search from "../pages/search/search.jsx";
 import ForgetPassword from '../pages/ForgetPassword'
 import NewPassword from '../pages/NewPassword'
+import JobInfo from '../pages/JobInfo/jobInfoPage.jsx'
+
 
 
 
@@ -28,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "search",
         element: <Search />,
+      },
+      {
+        path: "jobinfo/:id",
+        element: <JobInfo />,
       }
     ],
   },

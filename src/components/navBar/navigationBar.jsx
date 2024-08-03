@@ -27,6 +27,10 @@ function ResponsiveAppBar() {
   const message = useSelector((state) => state.Token.token.message);
   const role = useSelector((state) => state.Token.token.user_role);
   console.log(role, message);
+  const usersArr = useSelector((state) => state.users.users.document);
+  const avatarSrc = usersArr && usersArr.length > 0 ? `/Profile/avatar/${usersArr[0].avatar ? usersArr[0].avatar : 4}.svg` : '';
+  
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -226,7 +230,7 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="Remy Sharp" src={avatarSrc} />
                 </IconButton>
               </Tooltip>
               <Menu

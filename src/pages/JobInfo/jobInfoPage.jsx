@@ -100,7 +100,7 @@ const JobInfoPage = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px",minHeight:"520px" }}>
       <h1>Job Info</h1>
 
       {jobInfo && (

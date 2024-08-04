@@ -36,7 +36,7 @@ export default function FeaturedJobsCard({ category, type, catTitle, catLocation
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  let categoriespallete = ['business', 'design', 'engineering', 'finance', 'human', 'marketing', 'sales', 'technology']
+  let categoriespallete = ['business', 'design', 'engineering', 'finance', 'humanresources', 'marketing', 'sales', 'technology']
   let categoryColors = [
     "rgba(70, 64, 222, 0.1)",
     "rgba(86, 205, 173, 0.1)",

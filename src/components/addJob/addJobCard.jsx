@@ -145,10 +145,10 @@ export default function AddJobFrom() {
               <MenuItem value="sales">Sales</MenuItem>
               <MenuItem value="technology">Technology</MenuItem>
               <MenuItem value="finance">Finance</MenuItem>
-              <MenuItem value="human-resources">Human Resources</MenuItem>
-              <MenuItem value="finance">Design</MenuItem>
-              <MenuItem value="finance">Engineering</MenuItem>
-              <MenuItem value="finance">Business</MenuItem>
+              <MenuItem value="human resources">Human Resources</MenuItem>
+              <MenuItem value="design">Design</MenuItem>
+              <MenuItem value="engineering">Engineering</MenuItem>
+              <MenuItem value="business">Business</MenuItem>
             </Select>
           </FormControl>
         </DialogContent>

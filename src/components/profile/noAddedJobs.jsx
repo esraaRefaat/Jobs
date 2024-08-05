@@ -34,14 +34,14 @@ export default function NoJobsApplied() {
       <Typography variant="body2" color="text.secondary" paragraph>
         Start Adding jobs now and get access to thousands of talents
       </Typography>
-      <Button
+      {/* <Button
         variant="contained"
         color="primary"
         sx={{ marginTop: 2 }}
         onClick={() => navigate("/")}
       >
         Add job
-      </Button>
+      </Button> */}
     </Paper>
   );
 }

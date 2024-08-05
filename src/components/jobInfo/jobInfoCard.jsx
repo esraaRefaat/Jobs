@@ -17,6 +17,7 @@ const JobInfoCard = ({
   onDelete,
   isCreator,
   isAdmin,
+  isApplied
 }) => {
   const categoriesPalette = [
     "business",
@@ -99,12 +100,17 @@ const JobInfoCard = ({
         <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
           {!isCreator && !isAdmin && (
             <Button
-              variant="contained"
-              color="primary"
-              onClick={() => onApply(jobInfo._id)}
-            >
-              Apply
-            </Button>
+            variant="contained"
+            color={isApplied ? "secondary" : "primary"}
+            onClick={() => {
+              if (!isApplied) {
+                onApply(jobInfo._id);
+              }
+            }}
+            disabled={isApplied}
+          >
+            {isApplied ? "Applied" : "Apply"}
+          </Button>
           )}
           {isCreator && (
             <Button
